@@ -9,6 +9,7 @@ import pygame
 
 GRID_SIZE = (8, 6)
 BOX_SIZE = (60, 60)
+LINE_SIZE = 10
 X_OFFSET = 200
 Y_OFFSET = 200
 T = 15
@@ -53,9 +54,11 @@ class Game:
         self.y_end = 0
         self.screen = pygame.display.set_mode((900, 700))
         self.screen.fill((84, 185, 72))
-        self.fuente = pygame.font.Font(None, 50)
+        self.fuente = pygame.font.Font(None, BOX_SIZE[0])
         self.draw_grid()
         
+    def draw_line(self, r1, r2)
+        pygame.draw.line(self.screen, COLOR1, r1, r2, LINE_SIZE)
 
     def draw_grid(self):
         #pygame.draw.circle(Surface, color, pos, radius, width=0): return Rect
@@ -76,7 +79,7 @@ class Game:
                     self.vertical.append(y)
                 if j > 0:
                     v_boxes.append(box(self, i - 1, j - 1))
-                pygame.draw.circle(self.screen, (0, 0, 0), (x, y), 5, 5)
+                pygame.draw.circle(self.screen, (0, 0, 0), (x, y), LINE_SIZE, LINE_SIZE)
             if i > 0:
                 self.boxes.append(v_boxes)
         self.x_end = (len(self.horizontal) - 1) * BOX_SIZE[0] + X_OFFSET
@@ -129,7 +132,7 @@ class Game:
                         print 'box2', x_b - 1, y_b, b2.up, b2.left, b2.right, b2.down
                         if b2.check():
                             b2.showText('A')
-                    pygame.draw.line(self.screen, COLOR1, (r1[0],r2[0]), (r1[0],r2[1]), 5)
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],r2[0]), (r1[0],r2[1]), LINE_SIZE)
                     return
                 elif x > (r1[1] - T):
                     print 'lado derecho'
@@ -149,7 +152,7 @@ class Game:
                         print 'box', x_b - 1, y_b, b2.up, b2.left, b2.right, b2.down
                         if b2.check():
                             b2.showText('A')
-                    pygame.draw.line(self.screen, COLOR1, (r1[1],r2[0]), (r1[1],r2[1]), 5)
+                    pygame.draw.line(self.screen, COLOR1, (r1[1],r2[0]), (r1[1],r2[1]), LINE_SIZE)
                     return
         else:
             if (x > (X_OFFSET - T)) and (x < X_OFFSET):
@@ -164,7 +167,7 @@ class Game:
                     b.left = 1
                     if b.check():
                         b.showText('A')
-                    pygame.draw.line(self.screen, COLOR1, (X_OFFSET,r2[0]), (X_OFFSET,r2[1]), 5)
+                    pygame.draw.line(self.screen, COLOR1, (X_OFFSET,r2[0]), (X_OFFSET,r2[1]), LINE_SIZE)
                     return
             elif (x < (self.x_end + T)) and (x > self.x_end):
                 if not(r2[0] == False):
@@ -179,7 +182,7 @@ class Game:
                     print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                     if b.check():
                         b.showText('A')
-                    pygame.draw.line(self.screen, COLOR1, (self.x_end,r2[0]), (self.x_end,r2[1]), 5)
+                    pygame.draw.line(self.screen, COLOR1, (self.x_end,r2[0]), (self.x_end,r2[1]), LINE_SIZE)
                     return
 
         if not(r2[0] == False):
@@ -202,7 +205,7 @@ class Game:
                         print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                         if b2.check():
                             b2.showText('A')
-                    pygame.draw.line(self.screen, COLOR1, (r1[0],r2[0]), (r1[1],r2[0]), 5)
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],r2[0]), (r1[1],r2[0]), LINE_SIZE)
                     return
                 elif y > (r2[1] - T):
                     print 'arriba'
@@ -222,7 +225,7 @@ class Game:
                         print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                         if b2.check():
                             b2.showText('A')
-                    pygame.draw.line(self.screen, COLOR1, (r1[0],r2[1]), (r1[1],r2[1]), 5)
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],r2[1]), (r1[1],r2[1]), LINE_SIZE)
                     return
         else:
             if (y > Y_OFFSET - T) and (y < Y_OFFSET):
@@ -238,7 +241,7 @@ class Game:
                     b.up = 1
                     if b.check():
                         b.showText('A')
-                    pygame.draw.line(self.screen, COLOR1, (r1[0],Y_OFFSET), (r1[1],Y_OFFSET), 5)
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],Y_OFFSET), (r1[1],Y_OFFSET), LINE_SIZE)
                     return
             elif (y < (self.y_end + T)) and (y > self.y_end):
                 if not(r1[0] == False):
@@ -253,7 +256,7 @@ class Game:
                     b.down = 1
                     if b.check():
                         b.showText('A')
-                    pygame.draw.line(self.screen, COLOR1, (r1[0],self.y_end), (r1[1],self.y_end), 5)
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],self.y_end), (r1[1],self.y_end), LINE_SIZE)
                     return
 
 
