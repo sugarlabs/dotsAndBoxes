@@ -12,8 +12,8 @@ BOX_SIZE = (60, 60)
 X_OFFSET = 200
 Y_OFFSET = 200
 T = 15
-COLOR1 = (255, 0, 0)
-COLOR2 = (0, 0, 255)
+COLOR1 = (0, 0, 0)
+
 
 class box:
 
@@ -126,31 +126,90 @@ class Game:
         else:
             if (x > (X_OFFSET - T)) and (x < X_OFFSET):
                 if not(r2[0] == False):
+                    x_b = 0
+                    y_b = r2[2] - 1
+                    b = self.boxes[x_b][y_b]
+                    print 'box', x_b, y_b, b.up, b.left, b.right, b.down
+                    if b.left:
+                        print 'hay linea'
+                        return
+                    b.left = 1
                     pygame.draw.line(self.screen, COLOR1, (X_OFFSET,r2[0]), (X_OFFSET,r2[1]), 5)
                     return
             elif (x < (self.x_end + T)) and (x > self.x_end):
                 if not(r2[0] == False):
+                    x_b = GRID_SIZE[0] - 2
+                    y_b = r2[2] - 1
+                    print 'box', x_b, y_b
+                    b = self.boxes[x_b][y_b]
+                    if b.right:
+                        print 'hay linea'
+                        return
+                    b.right = 1
+                    print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                     pygame.draw.line(self.screen, COLOR1, (self.x_end,r2[0]), (self.x_end,r2[1]), 5)
                     return
 
         if not(r2[0] == False):
             if not(r1[0] == False):
                 if y < (r2[0] + T):
-                    #print 'aloja', r2[0]
-                    pygame.draw.line(self.screen, COLOR2, (r1[0],r2[0]), (r1[1],r2[0]), 5)
+                    print 'abajo'
+                    x_b = r1[2] - 1
+                    y_b = r2[2] - 1
+                    print 'box', x_b, y_b
+                    b = self.boxes[x_b][y_b]
+                    if b.up:
+                        print 'hay linea'
+                        return
+                    b.up = 1
+                    if y_b > 0:
+                        b2 = self.boxes[x_b][y_b-1]
+                        b2.down = 1
+                        print 'box', x_b, y_b, b.up, b.left, b.right, b.down
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],r2[0]), (r1[1],r2[0]), 5)
                     return
                 elif y > (r2[1] - T):
-                    #print 'aloja', r2[1]
-                    pygame.draw.line(self.screen, COLOR2, (r1[0],r2[1]), (r1[1],r2[1]), 5)
+                    print 'arriba'
+                    x_b = r1[2] - 1
+                    y_b = r2[2] - 1
+                    print 'box', x_b, y_b
+                    b = self.boxes[x_b][y_b]
+                    if b.down:
+                        print 'hay linea'
+                        return
+                    b.down = 1
+                    if y_b < GRID_SIZE[1] - 2:
+                        b2 = self.boxes[x_b][y_b+1]
+                        b2.up = 1
+                        print 'box', x_b, y_b, b.up, b.left, b.right, b.down
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],r2[1]), (r1[1],r2[1]), 5)
                     return
         else:
             if (y > Y_OFFSET - T) and (y < Y_OFFSET):
                 if not(r1[0] == False):
-                    pygame.draw.line(self.screen, COLOR2, (r1[0],Y_OFFSET), (r1[1],Y_OFFSET), 5)
+                    print 'arriba del todo'
+                    x_b = r1[2] - 1
+                    y_b = 0
+                    print 'box', x_b, y_b
+                    b = self.boxes[x_b][y_b]
+                    if b.up:
+                        print 'hay linea'
+                        return
+                    b.up = 1
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],Y_OFFSET), (r1[1],Y_OFFSET), 5)
                     return
             elif (y < (self.y_end + T)) and (y > self.y_end):
                 if not(r1[0] == False):
-                    pygame.draw.line(self.screen, COLOR2, (r1[0],self.y_end), (r1[1],self.y_end), 5)
+                    print 'abajo del todo'
+                    x_b = r1[2] - 1
+                    y_b = GRID_SIZE[1] - 2
+                    print 'box', x_b, y_b
+                    b = self.boxes[x_b][y_b]
+                    if b.down:
+                        print 'hay linea'
+                        return
+                    b.down = 1
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],self.y_end), (r1[1],self.y_end), 5)
                     return
 
 
