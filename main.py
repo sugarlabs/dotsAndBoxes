@@ -17,7 +17,11 @@ COLOR_OWNER = (255, 0, 0)
 
 class box:
 
-    def __init__(self):
+    def __init__(self, parent, x, y):
+        self.screen = parent.screen
+        self.fuente = parent.fuente
+        self.x = x
+        self.y = y
         self.up = 0
         self.left = 0
         self.right = 0
@@ -26,6 +30,16 @@ class box:
 
     def check(self):
         return ((self.up + self.left + self.right + self.down) == 4)
+
+    def showText(self, texto):
+        text = self.fuente.render(texto, 1, COLOR_OWNER)
+        textrect = text.get_rect()
+        x = self.x * BOX_SIZE[0] + X_OFFSET
+        y = self.y * BOX_SIZE[1] + Y_OFFSET
+        dx = int(BOX_SIZE[0] / 2.0)
+        dy = int(BOX_SIZE[1] / 2.0)
+        textrect.center = (x + dx, y + dy)
+        self.screen.blit(text, textrect)
 
 class Game:
 
@@ -39,18 +53,9 @@ class Game:
         self.y_end = 0
         self.screen = pygame.display.set_mode((900, 700))
         self.screen.fill((84, 185, 72))
-        self.draw_grid()
         self.fuente = pygame.font.Font(None, 50)
-
-    def showText(self, texto, p_x, p_y):
-        text = self.fuente.render(texto, 1, COLOR_OWNER)
-        textrect = text.get_rect()
-        x = p_x * BOX_SIZE[0] + X_OFFSET
-        y = p_y * BOX_SIZE[1] + Y_OFFSET
-        dx = int(BOX_SIZE[0] / 2.0)
-        dy = int(BOX_SIZE[1] / 2.0)
-        textrect.center = (x + dx, y + dy)
-        self.screen.blit(text, textrect)
+        self.draw_grid()
+        
 
     def draw_grid(self):
         #pygame.draw.circle(Surface, color, pos, radius, width=0): return Rect
@@ -70,7 +75,7 @@ class Game:
                 if i == 0:
                     self.vertical.append(y)
                 if j > 0:
-                    v_boxes.append(box())
+                    v_boxes.append(box(self, i - 1, j - 1))
                 pygame.draw.circle(self.screen, (0, 0, 0), (x, y), 5, 5)
             if i > 0:
                 self.boxes.append(v_boxes)
@@ -117,13 +122,13 @@ class Game:
                     b.left = 1
                     print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                     if b.check():
-                        self.showText('A', x_b , y_b)
+                        b.showText('A')
                     if x_b > 0:
                         b2 = self.boxes[x_b - 1][y_b]
                         b2.right = 1
                         print 'box2', x_b - 1, y_b, b2.up, b2.left, b2.right, b2.down
                         if b2.check():
-                            self.showText('A', x_b - 1, y_b)
+                            b2.showText('A')
                     pygame.draw.line(self.screen, COLOR1, (r1[0],r2[0]), (r1[0],r2[1]), 5)
                     return
                 elif x > (r1[1] - T):
@@ -137,13 +142,13 @@ class Game:
                     b.right = 1
                     print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                     if b.check():
-                        self.showText('A', x_b , y_b)
+                        b.showText('A')
                     if x_b < GRID_SIZE[1]:
                         b2 = self.boxes[x_b + 1][y_b]
                         b2.left = 1
                         print 'box', x_b - 1, y_b, b2.up, b2.left, b2.right, b2.down
                         if b2.check():
-                            self.showText('A', x_b + 1, y_b)
+                            b2.showText('A')
                     pygame.draw.line(self.screen, COLOR1, (r1[1],r2[0]), (r1[1],r2[1]), 5)
                     return
         else:
@@ -158,7 +163,7 @@ class Game:
                         return
                     b.left = 1
                     if b.check():
-                        self.showText('A', x_b , y_b)
+                        b.showText('A')
                     pygame.draw.line(self.screen, COLOR1, (X_OFFSET,r2[0]), (X_OFFSET,r2[1]), 5)
                     return
             elif (x < (self.x_end + T)) and (x > self.x_end):
@@ -173,7 +178,7 @@ class Game:
                     b.right = 1
                     print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                     if b.check():
-                        self.showText('A', x_b , y_b)
+                        b.showText('A')
                     pygame.draw.line(self.screen, COLOR1, (self.x_end,r2[0]), (self.x_end,r2[1]), 5)
                     return
 
@@ -190,13 +195,13 @@ class Game:
                         return
                     b.up = 1
                     if b.check():
-                        self.showText('A', x_b , y_b)
+                        b.showText('A')
                     if y_b > 0:
                         b2 = self.boxes[x_b][y_b-1]
                         b2.down = 1
                         print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                         if b2.check():
-                            self.showText('A', x_b , y_b - 1)
+                            b2.showText('A')
                     pygame.draw.line(self.screen, COLOR1, (r1[0],r2[0]), (r1[1],r2[0]), 5)
                     return
                 elif y > (r2[1] - T):
@@ -210,13 +215,13 @@ class Game:
                         return
                     b.down = 1
                     if b.check():
-                        self.showText('A', x_b , y_b)
+                        b.showText('A')
                     if y_b < GRID_SIZE[1] - 2:
                         b2 = self.boxes[x_b][y_b+1]
                         b2.up = 1
                         print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                         if b2.check():
-                            self.showText('A', x_b , y_b + 1)
+                            b2.showText('A')
                     pygame.draw.line(self.screen, COLOR1, (r1[0],r2[1]), (r1[1],r2[1]), 5)
                     return
         else:
@@ -232,7 +237,7 @@ class Game:
                         return
                     b.up = 1
                     if b.check():
-                        self.showText('A', x_b , y_b)
+                        b.showText('A')
                     pygame.draw.line(self.screen, COLOR1, (r1[0],Y_OFFSET), (r1[1],Y_OFFSET), 5)
                     return
             elif (y < (self.y_end + T)) and (y > self.y_end):
@@ -247,7 +252,7 @@ class Game:
                         return
                     b.down = 1
                     if b.check():
-                        self.showText('A', x_b , y_b)
+                        b.showText('A')
                     pygame.draw.line(self.screen, COLOR1, (r1[0],self.y_end), (r1[1],self.y_end), 5)
                     return
 
