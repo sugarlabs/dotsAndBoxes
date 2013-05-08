@@ -5,8 +5,6 @@
 import pygame
 
 
-#pygame.draw.rect(self.captura_to_show, (0,0,255), (p[0]*self.c1, p[1]*self.c2, 5, 5), 5)
-
 GRID_SIZE = (8, 6)
 BOX_SIZE = (60, 60)
 LINE_SIZE = 10
@@ -62,10 +60,6 @@ class Game:
         pygame.draw.line(self.screen, COLOR1, r1, r2, LINE_SIZE)
 
     def draw_grid(self):
-        #pygame.draw.circle(Surface, color, pos, radius, width=0): return Rect
-        #pygame.draw.circle(s, (255, 255, 255), (100, 100), 5, 5)
-        #pygame.draw.line(Surface, color, start_pos, end_pos, width=1): return Rect
-        #pygame.draw.line(s, (255, 255, 255), (100, 280), (100, 240), 5)
 
         w = GRID_SIZE[0]
         h = GRID_SIZE[1]
@@ -85,10 +79,6 @@ class Game:
                 self.boxes.append(v_boxes)
         self.x_end = (len(self.horizontal) - 1) * BOX_SIZE[0] + X_OFFSET
         self.y_end = (len(self.vertical) - 1) * BOX_SIZE[1] + Y_OFFSET
-
-        print self.horizontal
-        print self.vertical
-        print len(self.boxes)
 
     def where_x(self, x):
         for i in range(len(self.horizontal)):
@@ -116,46 +106,38 @@ class Game:
         if not(r1[0] == False):
             if not(r2[0] == False):
                 if x < (r1[0] + T):
-                    print 'lado izquierdo'
                     x_b = r1[2] - 1
                     y_b = r2[2] - 1
                     b = self.boxes[x_b][y_b]
                     if b.left:
-                        print 'hay linea'
                         return True
                     con = False
                     b.left = 1
-                    print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                     if b.check():
                         b.showText(self.current)
                         con = True
                     if x_b > 0:
                         b2 = self.boxes[x_b - 1][y_b]
                         b2.right = 1
-                        print 'box2', x_b - 1, y_b, b2.up, b2.left, b2.right, b2.down
                         if b2.check():
                             b2.showText(self.current)
                             con = True
                     self.draw_line((r1[0],r2[0]), (r1[0],r2[1]))
                     return con
                 elif x > (r1[1] - T):
-                    print 'lado derecho'
                     x_b = r1[2] - 1
                     y_b = r2[2] - 1
                     b = self.boxes[x_b][y_b]
                     if b.right:
-                        print 'hay linea'
                         return True
                     con = False
                     b.right = 1
-                    print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                     if b.check():
                         b.showText(self.current)
                         con = True
                     if x_b < GRID_SIZE[1]:
                         b2 = self.boxes[x_b + 1][y_b]
                         b2.left = 1
-                        print 'box', x_b - 1, y_b, b2.up, b2.left, b2.right, b2.down
                         if b2.check():
                             b2.showText(self.current)
                             con = True
@@ -167,9 +149,7 @@ class Game:
                     x_b = 0
                     y_b = r2[2] - 1
                     b = self.boxes[x_b][y_b]
-                    print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                     if b.left:
-                        print 'hay linea'
                         return True
                     con = False
                     b.left = 1
@@ -182,14 +162,11 @@ class Game:
                 if not(r2[0] == False):
                     x_b = GRID_SIZE[0] - 2
                     y_b = r2[2] - 1
-                    print 'box', x_b, y_b
                     b = self.boxes[x_b][y_b]
                     if b.right:
-                        print 'hay linea'
                         return True
                     con = False
                     b.right = 1
-                    print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                     if b.check():
                         b.showText(self.current)
                         con = True
@@ -199,13 +176,10 @@ class Game:
         if not(r2[0] == False):
             if not(r1[0] == False):
                 if y < (r2[0] + T):
-                    print 'abajo'
                     x_b = r1[2] - 1
                     y_b = r2[2] - 1
-                    print 'box', x_b, y_b
                     b = self.boxes[x_b][y_b]
                     if b.up:
-                        print 'hay linea'
                         return True
                     con = False
                     b.up = 1
@@ -215,20 +189,16 @@ class Game:
                     if y_b > 0:
                         b2 = self.boxes[x_b][y_b-1]
                         b2.down = 1
-                        print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                         if b2.check():
                             b2.showText(self.current)
                             con = True
                     self.draw_line((r1[0],r2[0]), (r1[1],r2[0]))
                     return con
                 elif y > (r2[1] - T):
-                    print 'arriba'
                     x_b = r1[2] - 1
                     y_b = r2[2] - 1
-                    print 'box', x_b, y_b
                     b = self.boxes[x_b][y_b]
                     if b.down:
-                        print 'hay linea'
                         return True
                     con = False
                     b.down = 1
@@ -238,7 +208,6 @@ class Game:
                     if y_b < GRID_SIZE[1] - 2:
                         b2 = self.boxes[x_b][y_b+1]
                         b2.up = 1
-                        print 'box', x_b, y_b, b.up, b.left, b.right, b.down
                         if b2.check():
                             b2.showText(self.current)
                             con = True
@@ -247,13 +216,10 @@ class Game:
         else:
             if (y > Y_OFFSET - T) and (y < Y_OFFSET):
                 if not(r1[0] == False):
-                    print 'arriba del todo'
                     x_b = r1[2] - 1
                     y_b = 0
-                    print 'box', x_b, y_b
                     b = self.boxes[x_b][y_b]
                     if b.up:
-                        print 'hay linea'
                         return True
                     con = False
                     b.up = 1
@@ -264,13 +230,10 @@ class Game:
                     return con
             elif (y < (self.y_end + T)) and (y > self.y_end):
                 if not(r1[0] == False):
-                    print 'abajo del todo'
                     x_b = r1[2] - 1
                     y_b = GRID_SIZE[1] - 2
-                    print 'box', x_b, y_b
                     b = self.boxes[x_b][y_b]
                     if b.down:
-                        print 'hay linea'
                         return True
                     con = False
                     b.down = 1
@@ -290,7 +253,6 @@ class Game:
                     run = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     pos = event.pos
-                    print pos
                     ret = self.where(pos)
                     print ret
                     if ret == False:
