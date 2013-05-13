@@ -40,7 +40,7 @@ class Activity(activity.Activity):
 
     def __init__(self, handle):
         activity.Activity.__init__(self, handle)
-        self.game_size = (9, 7)
+        self.game_size = (8, 6)
         self.game = main.Game(self)
         self.build_toolbar()
         self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
@@ -63,7 +63,7 @@ class Activity(activity.Activity):
         #Horizontal
         item1 = gtk.ToolItem()
         label1 = gtk.Label()
-        label1.set_text(_('H'))
+        label1.set_text(' %s ' % _('H'))
         item1.add(label1)
         toolbar_box.toolbar.insert(item1, -1)
 
@@ -79,7 +79,7 @@ class Activity(activity.Activity):
         #Vertical
         item3 = gtk.ToolItem()
         label2 = gtk.Label()
-        label2.set_text(_('V'))
+        label2.set_text(' %s ' % _('V'))
         item3.add(label2)
         toolbar_box.toolbar.insert(item3, -1)
 

@@ -38,7 +38,7 @@ class box:
     def showText(self, texto):
         text = self.fuente.render(texto, 1, COLOR_OWNER)
         textrect = text.get_rect()
-        textrect.center = (self.x, self.y)
+        textrect.center = (self.pos_x, self.pos_y)
         self.screen.blit(text, textrect)
 
 class Game:
