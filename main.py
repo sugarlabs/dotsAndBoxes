@@ -3,7 +3,7 @@
 
 
 import pygame
-
+import gtk
 
 GRID_SIZE = (8, 6)
 BOX_SIZE = (60, 60)
@@ -43,19 +43,14 @@ class box:
 class Game:
 
     def __init__(self, parent=None):
-        pygame.init()
-
+        self.parent = parent
         self.horizontal = []
         self.vertical = []
         self.boxes = []
         self.x_end = 0
         self.y_end = 0
-        self.screen = pygame.display.set_mode((900, 700))
-        self.screen.fill((84, 185, 72))
-        self.fuente = pygame.font.Font(None, BOX_SIZE[0])
-        self.draw_grid()
         self.current = 'A'
-        
+
     def draw_line(self, r1, r2):
         pygame.draw.line(self.screen, COLOR1, r1, r2, LINE_SIZE)
 
@@ -244,9 +239,16 @@ class Game:
 
 
     def run(self):
+        pygame.init()
+        self.screen = pygame.display.set_mode((900, 700))
+        self.screen.fill((84, 185, 72))
+        self.fuente = pygame.font.Font(None, BOX_SIZE[0])
+        self.draw_grid()
 
         run = True
         while run:
+            while gtk.events_pending():
+                gtk.main_iteration()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
