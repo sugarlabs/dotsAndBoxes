@@ -59,6 +59,25 @@ class Game:
         self.draw_grid()
 
     def draw_grid(self):
+        w = self.grid_size[0]
+        h = self.grid_size[1]
+        s_w = self.screen.get_width()
+        s_h = self.screen.get_height()
+
+        if s_w < (w * (self.box_size[0] + 1)):
+            print 'pasa x'
+            return
+        else:
+            xx = w * (self.box_size[0] - 1)
+            self.x_offset = int((s_w - xx) / 2.0) + LINE_SIZE * 2
+
+        if s_h < (h * (self.box_size[1] + 1)):
+            print 'pasa y'
+            return
+        else:
+            yy = h * (self.box_size[1] - 1)
+            self.y_offset = int((s_h - yy) / 2.0) + LINE_SIZE * 2
+
         self.screen.fill((84, 185, 72))
         self.horizontal = []
         self.vertical = []
@@ -66,16 +85,6 @@ class Game:
         self.x_end = 0
         self.y_end = 0
 
-        w = self.grid_size[0]
-        h = self.grid_size[1]
-        print self.box_size
-        s_w = self.screen.get_width()
-        if s_w < w * self.box_size[0]:
-            print 'pasa x'
-        else:
-            xx = s_w - w * (self.box_size[0] - 1)
-            self.x_offset = int(xx / 2.0)
-        print self.box_size
         for i in range(w):
             x = i * self.box_size[0] + self.x_offset
             self.horizontal.append(x)
@@ -114,7 +123,7 @@ class Game:
         x, y = pos
         r1 = self.where_x(x)
         r2 = self.where_y(y)
-        print r1, r2
+        #print r1, r2
         if not(r1[0] == False):
             if not(r2[0] == False):
                 if x < (r1[0] + T):
@@ -147,8 +156,8 @@ class Game:
                     if b.check():
                         b.showText(self.current)
                         con = True
-                    #print 'aca', x_b, self.grid_size[0]
-                    if x_b < self.grid_size[0]:
+                    #print 'aca', x_b, y_b, self.grid_size[0]
+                    if x_b < (self.grid_size[0] - 2):
                         b2 = self.boxes[x_b + 1][y_b]
                         b2.left = 1
                         if b2.check():
@@ -264,7 +273,7 @@ class Game:
         self.screen.fill((84, 185, 72))
         self.fuente = pygame.font.Font(None, self.box_size[0])
         self.draw_grid()
-        print dir(self.screen)
+
         run = True
         while run:
             while gtk.events_pending():
