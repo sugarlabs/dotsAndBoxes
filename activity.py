@@ -40,7 +40,8 @@ class Activity(activity.Activity):
 
     def __init__(self, handle):
         activity.Activity.__init__(self, handle)
-        self.game = main.Game()
+        self.game_size = (8, 6)
+        self.game = main.Game(self)
         self.build_toolbar()
         self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
         self.set_canvas(self._pygamecanvas)
@@ -59,13 +60,26 @@ class Activity(activity.Activity):
         toolbar_box.toolbar.insert(activity_button, -1)
         activity_button.show()
 
+        item1 = gtk.ToolItem()
+        label1 = gtk.Label()
+        label1.set_text(_('Horizontal'))
+        item1.add(label1)
+        toolbar_box.toolbar.insert(item1, -1)
+
+        item2 = gtk.ToolItem()
+        h_spin = gtk.SpinButton()
+        h_spin.set_range(2, 30)
+        h_spin.set_increments(1, 2)
+        h_spin.props.value = 5
+        h_spin.connect('notify::value', self.h_spin_change)
+        item2.add(h_spin)
+        toolbar_box.toolbar.insert(item2, -1)
+
         separator = gtk.SeparatorToolItem()
         separator.props.draw = False
         separator.set_expand(True)
         toolbar_box.toolbar.insert(separator, -1)
         separator.show()
-
-        #self.create_help(toolbar_box.toolbar)
 
         stop_button = StopButton(self)
         toolbar_box.toolbar.insert(stop_button, -1)
@@ -73,11 +87,9 @@ class Activity(activity.Activity):
 
         self.show_all()
 
-    def create_help(self, toolbar):
-        helpitem = HelpButton()
-        toolbar.insert(helpitem, -1)
-        helpitem.show()
-        helpitem.add_paragraph(_('or press A for an apple'), 'apple')
+    def h_spin_change(self, spin, value):
+        self.game_size = (int(spin.props.value), self.game_size[1])
+        self.game.set_board_size(self.game_size)
 
     def read_file(self, file_path):
         pass

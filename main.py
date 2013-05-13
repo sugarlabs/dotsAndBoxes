@@ -5,11 +5,7 @@
 import pygame
 import gtk
 
-GRID_SIZE = (8, 6)
-BOX_SIZE = (60, 60)
 LINE_SIZE = 10
-X_OFFSET = 200
-Y_OFFSET = 200
 T = 15
 COLOR1 = (0, 0, 0)
 COLOR_OWNER = (255, 0, 0)
@@ -19,8 +15,17 @@ class box:
     def __init__(self, parent, x, y):
         self.screen = parent.screen
         self.fuente = parent.fuente
+        self.box_size = parent.box_size
+        self.x_offset = parent.x_offset
+        self.y_offset = parent.y_offset
         self.x = x
         self.y = y
+        x1 = self.x * self.box_size[0] + self.x_offset
+        y1 = self.y * self.box_size[1] + self.y_offset
+        dx = int(self.box_size[0] / 2.0)
+        dy = int(self.box_size[1] / 2.0)
+        self.pos_x = x1 + dx
+        self.pos_y = y1 + dy
         self.up = 0
         self.left = 0
         self.right = 0
@@ -33,38 +38,50 @@ class box:
     def showText(self, texto):
         text = self.fuente.render(texto, 1, COLOR_OWNER)
         textrect = text.get_rect()
-        x = self.x * BOX_SIZE[0] + X_OFFSET
-        y = self.y * BOX_SIZE[1] + Y_OFFSET
-        dx = int(BOX_SIZE[0] / 2.0)
-        dy = int(BOX_SIZE[1] / 2.0)
-        textrect.center = (x + dx, y + dy)
+        textrect.center = (self.x, self.y)
         self.screen.blit(text, textrect)
 
 class Game:
 
     def __init__(self, parent=None):
         self.parent = parent
+        self.current = 'A'
+        self.grid_size = (8, 6)
+        self.box_size = (50, 50)
+        self.x_offset = 100
+        self.y_offset = 100
+
+    def draw_line(self, r1, r2):
+        pygame.draw.line(self.screen, COLOR1, r1, r2, LINE_SIZE)
+
+    def set_board_size(self, size):
+        self.grid_size = size
+        self.draw_grid()
+
+    def draw_grid(self):
+        self.screen.fill((84, 185, 72))
         self.horizontal = []
         self.vertical = []
         self.boxes = []
         self.x_end = 0
         self.y_end = 0
-        self.current = 'A'
 
-    def draw_line(self, r1, r2):
-        pygame.draw.line(self.screen, COLOR1, r1, r2, LINE_SIZE)
-
-    def draw_grid(self):
-
-        w = GRID_SIZE[0]
-        h = GRID_SIZE[1]
-
+        w = self.grid_size[0]
+        h = self.grid_size[1]
+        print self.box_size
+        s_w = self.screen.get_width()
+        if s_w < w * self.box_size[0]:
+            print 'pasa x'
+        else:
+            xx = s_w - w * (self.box_size[0] - 1)
+            self.x_offset = int(xx / 2.0)
+        print self.box_size
         for i in range(w):
-            x = i * BOX_SIZE[0] + X_OFFSET
+            x = i * self.box_size[0] + self.x_offset
             self.horizontal.append(x)
             v_boxes = []
             for j in range(h):
-                y = j * BOX_SIZE[1] + Y_OFFSET
+                y = j * self.box_size[1] + self.y_offset
                 if i == 0:
                     self.vertical.append(y)
                 if j > 0:
@@ -72,8 +89,8 @@ class Game:
                 pygame.draw.circle(self.screen, (0, 0, 0), (x, y), LINE_SIZE, LINE_SIZE)
             if i > 0:
                 self.boxes.append(v_boxes)
-        self.x_end = (len(self.horizontal) - 1) * BOX_SIZE[0] + X_OFFSET
-        self.y_end = (len(self.vertical) - 1) * BOX_SIZE[1] + Y_OFFSET
+        self.x_end = (len(self.horizontal) - 1) * self.box_size[0] + self.x_offset
+        self.y_end = (len(self.vertical) - 1) * self.box_size[1] + self.y_offset
 
     def where_x(self, x):
         for i in range(len(self.horizontal)):
@@ -97,7 +114,7 @@ class Game:
         x, y = pos
         r1 = self.where_x(x)
         r2 = self.where_y(y)
-
+        print r1, r2
         if not(r1[0] == False):
             if not(r2[0] == False):
                 if x < (r1[0] + T):
@@ -130,7 +147,8 @@ class Game:
                     if b.check():
                         b.showText(self.current)
                         con = True
-                    if x_b < GRID_SIZE[1]:
+                    #print 'aca', x_b, self.grid_size[0]
+                    if x_b < self.grid_size[0]:
                         b2 = self.boxes[x_b + 1][y_b]
                         b2.left = 1
                         if b2.check():
@@ -139,7 +157,7 @@ class Game:
                     self.draw_line((r1[1],r2[0]), (r1[1],r2[1]))
                     return con
         else:
-            if (x > (X_OFFSET - T)) and (x < X_OFFSET):
+            if (x > (self.x_offset - T)) and (x < self.x_offset):
                 if not(r2[0] == False):
                     x_b = 0
                     y_b = r2[2] - 1
@@ -151,11 +169,11 @@ class Game:
                     if b.check():
                         b.showText(self.current)
                         con = True
-                    self.draw_line((X_OFFSET,r2[0]), (X_OFFSET,r2[1]))
+                    self.draw_line((self.x_offset,r2[0]), (self.x_offset,r2[1]))
                     return con
             elif (x < (self.x_end + T)) and (x > self.x_end):
                 if not(r2[0] == False):
-                    x_b = GRID_SIZE[0] - 2
+                    x_b = self.grid_size[0] - 2
                     y_b = r2[2] - 1
                     b = self.boxes[x_b][y_b]
                     if b.right:
@@ -200,7 +218,7 @@ class Game:
                     if b.check():
                         b.showText(self.current)
                         con = True
-                    if y_b < GRID_SIZE[1] - 2:
+                    if y_b < self.grid_size[1] - 2:
                         b2 = self.boxes[x_b][y_b+1]
                         b2.up = 1
                         if b2.check():
@@ -209,7 +227,7 @@ class Game:
                     self.draw_line((r1[0],r2[1]), (r1[1],r2[1]))
                     return con
         else:
-            if (y > Y_OFFSET - T) and (y < Y_OFFSET):
+            if (y > self.y_offset - T) and (y < self.y_offset):
                 if not(r1[0] == False):
                     x_b = r1[2] - 1
                     y_b = 0
@@ -221,12 +239,12 @@ class Game:
                     if b.check():
                         b.showText(self.current)
                         con = True
-                    pygame.draw.line(self.screen, COLOR1, (r1[0],Y_OFFSET), (r1[1],Y_OFFSET), LINE_SIZE)
+                    pygame.draw.line(self.screen, COLOR1, (r1[0],self.y_offset), (r1[1],self.y_offset), LINE_SIZE)
                     return con
             elif (y < (self.y_end + T)) and (y > self.y_end):
                 if not(r1[0] == False):
                     x_b = r1[2] - 1
-                    y_b = GRID_SIZE[1] - 2
+                    y_b = self.grid_size[1] - 2
                     b = self.boxes[x_b][y_b]
                     if b.down:
                         return True
@@ -240,11 +258,13 @@ class Game:
 
     def run(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((900, 700))
+        self.screen = pygame.display.get_surface()
+        if not self.screen:
+            self.screen = pygame.display.set_mode((900, 700))
         self.screen.fill((84, 185, 72))
-        self.fuente = pygame.font.Font(None, BOX_SIZE[0])
+        self.fuente = pygame.font.Font(None, self.box_size[0])
         self.draw_grid()
-
+        print dir(self.screen)
         run = True
         while run:
             while gtk.events_pending():
