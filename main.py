@@ -66,6 +66,8 @@ class Game:
 
         if s_w < (w * (self.box_size[0] + 1)):
             print 'pasa x'
+            value = int(s_w / (self.box_size[0] + 1.0)) - 1
+            self.parent.h_spin_set_max(value)
             return
         else:
             xx = w * (self.box_size[0] - 1)
@@ -73,6 +75,8 @@ class Game:
 
         if s_h < (h * (self.box_size[1] + 1)):
             print 'pasa y'
+            value = int(s_h / (self.box_size[1] + 1.0)) - 1
+            self.parent.v_spin_set_max(value)
             return
         else:
             yy = h * (self.box_size[1] - 1)

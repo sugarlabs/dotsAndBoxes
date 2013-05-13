@@ -68,12 +68,12 @@ class Activity(activity.Activity):
         toolbar_box.toolbar.insert(item1, -1)
 
         item2 = gtk.ToolItem()
-        h_spin = gtk.SpinButton()
-        h_spin.set_range(2, 30)
-        h_spin.set_increments(1, 2)
-        h_spin.props.value = self.game_size[0]
-        h_spin.connect('notify::value', self.h_spin_change)
-        item2.add(h_spin)
+        self.h_spin = gtk.SpinButton()
+        self.h_spin.set_range(2, 30)
+        self.h_spin.set_increments(1, 2)
+        self.h_spin.props.value = self.game_size[0]
+        self.h_spin.connect('notify::value', self.h_spin_change)
+        item2.add(self.h_spin)
         toolbar_box.toolbar.insert(item2, -1)
 
         #Vertical
@@ -84,12 +84,12 @@ class Activity(activity.Activity):
         toolbar_box.toolbar.insert(item3, -1)
 
         item4 = gtk.ToolItem()
-        v_spin = gtk.SpinButton()
-        v_spin.set_range(2, 20)
-        v_spin.set_increments(1, 2)
-        v_spin.props.value = self.game_size[1]
-        v_spin.connect('notify::value', self.v_spin_change)
-        item4.add(v_spin)
+        self.v_spin = gtk.SpinButton()
+        self.v_spin.set_range(2, 20)
+        self.v_spin.set_increments(1, 2)
+        self.v_spin.props.value = self.game_size[1]
+        self.v_spin.connect('notify::value', self.v_spin_change)
+        item4.add(self.v_spin)
         toolbar_box.toolbar.insert(item4, -1)
 
         separator = gtk.SeparatorToolItem()
@@ -111,6 +111,12 @@ class Activity(activity.Activity):
     def v_spin_change(self, spin, value):
         self.game_size = (self.game_size[0], int(spin.props.value) + 1)
         self.game.set_board_size(self.game_size)
+
+    def h_spin_set_max(self, value):
+        self.h_spin.set_range(2, value)
+
+    def v_spin_set_max(self, value):
+        self.v_spin.set_range(2, value)
 
     def read_file(self, file_path):
         pass
