@@ -49,6 +49,7 @@ class Game:
         self.box_size = (50, 50)
         self.x_offset = 100
         self.y_offset = 100
+        self.back_color = (84, 185, 72)
         self.line_color = (0, 0, 0)
         self.point_color = (0, 0, 0)
 
@@ -61,6 +62,19 @@ class Game:
 
     def set_point_color(self, color):
         self.point_color = color
+        self.draw_grid()
+
+    def set_back_color(self, color):
+        self.back_color = color
+        self.draw_grid()
+
+    def set_line_color(self, color):
+        self.line_color = color
+        self.draw_grid()
+
+    def set_owner_color(self, color):
+        global COLOR_OWNER
+        COLOR_OWNER = color
         self.draw_grid()
 
     def draw_grid(self):
@@ -87,7 +101,7 @@ class Game:
             yy = h * (self.box_size[1] - 1)
             self.y_offset = int((s_h - yy) / 2.0) + LINE_SIZE * 2
 
-        self.screen.fill((84, 185, 72))
+        self.screen.fill(self.back_color)
         self.horizontal = []
         self.vertical = []
         self.boxes = []
@@ -279,7 +293,7 @@ class Game:
         self.screen = pygame.display.get_surface()
         if not self.screen:
             self.screen = pygame.display.set_mode((900, 700))
-        self.screen.fill((84, 185, 72))
+        self.screen.fill(self.back_color)
         self.fuente = pygame.font.Font(None, self.box_size[0])
         self.draw_grid()
 
