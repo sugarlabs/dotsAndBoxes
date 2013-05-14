@@ -27,7 +27,6 @@ import sugargame.canvas
 from sugar.activity import activity
 from sugar.graphics.toolbarbox import ToolbarBox
 from sugar.activity.widgets import ActivityToolbarButton
-from sugar.graphics.toolbutton import ToolButton
 from sugar.activity.widgets import StopButton
 from sugar.graphics.colorbutton import ColorToolButton
 from sugar.graphics.toolbarbox import ToolbarButton
@@ -61,8 +60,20 @@ class Activity(activity.Activity):
         toolbar_box.toolbar.insert(activity_button, -1)
         activity_button.show()
 
+        # toolbars
         self.build_size_toolbar(toolbar_box)
         self.build_colors_toolbar(toolbar_box)
+
+        separator = gtk.SeparatorToolItem()
+        toolbar_box.toolbar.insert(separator, -1)
+        separator.show()
+
+        #current
+        item = gtk.ToolItem()
+        self.current_label = gtk.Label()
+        self.current_label.set_text(' %s ' % _('Player 1'))
+        item.add(self.current_label)
+        toolbar_box.toolbar.insert(item, -1)
 
         # end separator
         separator = gtk.SeparatorToolItem()
@@ -253,6 +264,12 @@ class Activity(activity.Activity):
         g = color.green *255 / 65536
         b = color.blue *255 / 65536
         return (r, g, b)
+
+    def set_current_player(self, player):
+        if player == 'A':
+            self.current_label.set_text(' %s ' % _('Player 1'))
+        else:
+            self.current_label.set_text(' %s ' % _('Player 2'))
 
     def read_file(self, file_path):
         pass

@@ -308,13 +308,12 @@ class Game:
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     pos = event.pos
                     ret = self.where(pos)
-                    print ret
                     if ret == False:
                         if self.current == 'A':
                             self.current = 'B'
                         else:
                             self.current = 'A'
-                    print self.current
+                        self.parent.set_current_player(self.current)
 
             pygame.display.flip()
 
