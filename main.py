@@ -7,7 +7,6 @@ import gtk
 
 LINE_SIZE = 10
 T = 15
-COLOR1 = (0, 0, 0)
 COLOR_OWNER = (255, 0, 0)
 
 class box:
@@ -50,12 +49,18 @@ class Game:
         self.box_size = (50, 50)
         self.x_offset = 100
         self.y_offset = 100
+        self.line_color = (0, 0, 0)
+        self.point_color = (0, 0, 0)
 
     def draw_line(self, r1, r2):
-        pygame.draw.line(self.screen, COLOR1, r1, r2, LINE_SIZE)
+        pygame.draw.line(self.screen, self.line_color, r1, r2, LINE_SIZE)
 
     def set_board_size(self, size):
         self.grid_size = size
+        self.draw_grid()
+
+    def set_point_color(self, color):
+        self.point_color = color
         self.draw_grid()
 
     def draw_grid(self):
@@ -99,7 +104,7 @@ class Game:
                     self.vertical.append(y)
                 if j > 0:
                     v_boxes.append(box(self, i - 1, j - 1))
-                pygame.draw.circle(self.screen, (0, 0, 0), (x, y), LINE_SIZE, LINE_SIZE)
+                pygame.draw.circle(self.screen, self.point_color, (x, y), LINE_SIZE, LINE_SIZE)
             if i > 0:
                 self.boxes.append(v_boxes)
         self.x_end = (len(self.horizontal) - 1) * self.box_size[0] + self.x_offset
@@ -252,7 +257,7 @@ class Game:
                     if b.check():
                         b.showText(self.current)
                         con = True
-                    pygame.draw.line(self.screen, COLOR1, (r1[0],self.y_offset), (r1[1],self.y_offset), LINE_SIZE)
+                    self.draw_line((r1[0],self.y_offset), (r1[1],self.y_offset))
                     return con
             elif (y < (self.y_end + T)) and (y > self.y_end):
                 if not(r1[0] == False):
@@ -265,7 +270,7 @@ class Game:
                     b.down = 1
                     if b.check():
                         b.showText(self.current)
-                    pygame.draw.line(self.screen, COLOR1, (r1[0],self.y_end), (r1[1],self.y_end), LINE_SIZE)
+                    self.draw_line((r1[0],self.y_end), (r1[1],self.y_end))
                     return False
 
 

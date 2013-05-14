@@ -20,9 +20,8 @@
 # Contact information:
 # Alan Aguiar <alanjas@gmail.com>
 
-import sys
+
 import gtk
-import pygame
 import sugargame.canvas
 
 from sugar.activity import activity
@@ -30,6 +29,7 @@ from sugar.graphics.toolbarbox import ToolbarBox
 from sugar.activity.widgets import ActivityToolbarButton
 from sugar.graphics.toolbutton import ToolButton
 from sugar.activity.widgets import StopButton
+from sugar.graphics.colorbutton import ColorToolButton
 
 from gettext import gettext as _
 
@@ -92,6 +92,14 @@ class Activity(activity.Activity):
         item4.add(self.v_spin)
         toolbar_box.toolbar.insert(item4, -1)
 
+        # Point color
+        item5 = gtk.ToolItem()
+        self._fill_color = ColorToolButton()
+        self._fill_color.connect('notify::color', self.color_button_change)
+        item5.add(self._fill_color)
+        toolbar_box.toolbar.insert(item5, -1)
+
+        # end separator
         separator = gtk.SeparatorToolItem()
         separator.props.draw = False
         separator.set_expand(True)
@@ -117,6 +125,17 @@ class Activity(activity.Activity):
 
     def v_spin_set_max(self, value):
         self.v_spin.set_range(2, value)
+
+    def color_button_change(self, widget, pspec):
+        color = widget.get_color()
+        new_color = self.color_to_rgb(color)
+        self.game.set_point_color(new_color)
+
+    def color_to_rgb(self, color):
+        r = color.red *255 / 65536
+        g = color.green *255 / 65536
+        b = color.blue *255 / 65536
+        return (r, g, b)
 
     def read_file(self, file_path):
         pass
