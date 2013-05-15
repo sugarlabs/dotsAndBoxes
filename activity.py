@@ -70,6 +70,13 @@ class Activity(activity.Activity):
 
         #current
         item = gtk.ToolItem()
+        label = gtk.Label()
+        label.set_text(' %s ' % _('Current player:'))
+        item.add(label)
+        toolbar_box.toolbar.insert(item, -1)
+
+        #player
+        item = gtk.ToolItem()
         self.current_label = gtk.Label()
         self.current_label.set_text(' %s ' % _('Player 1'))
         item.add(self.current_label)

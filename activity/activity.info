@@ -1,6 +1,6 @@
 [Activity]
 name = Dots and boxes
-activity_version = 1
+activity_version = 2
 bundle_id = org.ceibaljam.dotsandboxes
 icon = boxes-sugar
 exec = sugar-activity activity.Activity
