@@ -118,7 +118,7 @@ class Game:
                     self.vertical.append(y)
                 if j > 0:
                     v_boxes.append(box(self, i - 1, j - 1))
-                pygame.draw.circle(self.screen, self.point_color, (x, y), LINE_SIZE, LINE_SIZE)
+                pygame.draw.circle(self.screen, self.point_color, (x, y), LINE_SIZE)
             if i > 0:
                 self.boxes.append(v_boxes)
         self.x_end = (len(self.horizontal) - 1) * self.box_size[0] + self.x_offset
