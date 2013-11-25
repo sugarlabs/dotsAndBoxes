@@ -313,7 +313,8 @@ class Game:
                             self.current = 'B'
                         else:
                             self.current = 'A'
-                        self.parent.set_current_player(self.current)
+                        if self.parent:
+                            self.parent.set_current_player(self.current)
 
             pygame.display.flip()
 
