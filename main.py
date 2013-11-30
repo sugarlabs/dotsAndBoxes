@@ -129,6 +129,7 @@ class Game:
         global PLAYER_B
         PLAYER_A = 0
         PLAYER_B = 0
+        self.current = 'A'
         w = self.grid_size[0]
         h = self.grid_size[1]
         s_w = self.screen.get_width()

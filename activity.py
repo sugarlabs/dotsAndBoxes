@@ -30,6 +30,7 @@ from sugar.activity.widgets import ActivityToolbarButton
 from sugar.activity.widgets import StopButton
 from sugar.graphics.colorbutton import ColorToolButton
 from sugar.graphics.toolbarbox import ToolbarButton
+from sugar.graphics.toolbutton import ToolButton
 
 from gettext import gettext as _
 
@@ -63,6 +64,12 @@ class Activity(activity.Activity):
         # toolbars
         self.build_size_toolbar(toolbar_box)
         self.build_colors_toolbar(toolbar_box)
+
+        # new game button
+        new_game = ToolButton('new-game')
+        new_game.connect('clicked', self._new_game)
+        new_game.set_tooltip(_('New game'))
+        toolbar_box.toolbar.insert(new_game, -1)
 
         separator = gtk.SeparatorToolItem()
         toolbar_box.toolbar.insert(separator, -1)
@@ -277,6 +284,9 @@ class Activity(activity.Activity):
             self.current_label.set_text(' %s ' % _('Player 1'))
         else:
             self.current_label.set_text(' %s ' % _('Player 2'))
+
+    def _new_game(self, widget):
+        self.game.draw_grid()
 
     def read_file(self, file_path):
         pass
