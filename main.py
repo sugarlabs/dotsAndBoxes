@@ -47,7 +47,6 @@ class box:
             self.owner = 'B'
             PLAYER_B = PLAYER_B + 1
         self.showOwner()
-        print PLAYER_A, PLAYER_B
 
     def showOwner(self):
         text = self.fuente.render(self.owner, 1, COLOR_OWNER)
