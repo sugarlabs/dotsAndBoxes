@@ -60,7 +60,7 @@ class Game:
     def __init__(self, parent=None):
         self.parent = parent
         self.current = 'A'
-        self.grid_size = (4, 4)
+        self.grid_size = (8, 6)
         self.calc_grid_cant()
         self.box_size = (50, 50)
         self.x_offset = 100
