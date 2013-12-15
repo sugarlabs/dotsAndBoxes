@@ -84,7 +84,7 @@ class Game:
         elif PLAYER_B > PLAYER_A:
             winner = 'B'
         if winner == None:
-            msg = _('Empate')
+            msg = _('Draw')
         else:
             msg = _('Player %s win!') % winner
         text = self.fuente2.render(msg, 1, COLOR_OWNER)
