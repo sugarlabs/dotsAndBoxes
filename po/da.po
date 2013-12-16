@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-14 00:32-0500\n"
-"PO-Revision-Date: 2013-12-17 00:03+0200\n"
+"PO-Revision-Date: 2013-12-17 00:57+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -77,7 +77,7 @@ msgstr "Spiller 2"
 
 #: main.py:87
 msgid "Empate"
-msgstr ""
+msgstr "Uafgjort"
 
 #: main.py:89
 #, python-format
