@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-14 20:30-0300\n"
-"PO-Revision-Date: 2013-12-14 07:33+0200\n"
+"POT-Creation-Date: 2013-12-17 00:31-0500\n"
+"PO-Revision-Date: 2013-12-17 08:55+0200\n"
 "Last-Translator: AlanJAS <alanjas@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -17,46 +17,79 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
+#: main.py:343
 msgid "Dots and boxes"
 msgstr "Puntos y cajas"
 
-#: activity.py:74 activity.py:270
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid "The classical \"Dots and Boxes\" game"
+msgstr "El clásico juego de \"Puntos y cajas\""
+
+#: activity.py:71
+msgid "New game"
+msgstr "Juego nuevo"
+
+#: activity.py:81
+msgid "Current player:"
+msgstr "Jugador actual:"
+
+#: activity.py:88 activity.py:284
 msgid "Player 1"
 msgstr "Jugador 1"
 
-#: activity.py:98
+#: activity.py:112
 msgid "H"
 msgstr "H"
 
-#: activity.py:114
+#: activity.py:128
 msgid "V"
 msgstr "V"
 
-#: activity.py:128
+#: activity.py:142
 msgid "Board size"
 msgstr "Tamaño del tablero"
 
-#: activity.py:142
+#: activity.py:156
 msgid "Points"
 msgstr "Puntos"
 
-#: activity.py:162
+#: activity.py:176
 msgid "Background"
 msgstr "Fondo"
 
-#: activity.py:187
+#: activity.py:201
 msgid "Lines"
 msgstr "Líneas"
 
-#: activity.py:207
+#: activity.py:221
 msgid "Owner"
 msgstr "Propietario"
 
-#: activity.py:222
+#: activity.py:236
 msgid "Colors"
 msgstr "Colores"
 
-#: activity.py:272
+#: activity.py:286
 msgid "Player 2"
 msgstr "Jugador 2"
+
+#: main.py:87
+msgid "Tie"
+msgstr "Empate"
+
+#: main.py:89
+#, python-format
+msgid "Player %s win!"
+msgstr "¡El jugador %s ganó!"
+
+#: main.py:95
+msgid "Click to start a new game"
+msgstr "Haz clic para empezar un juego nuevo"
+
+#~ msgid "Draw"
+#~ msgstr "Empate"
+
+#~ msgid "Empate"
+#~ msgstr "Empate"
