@@ -1,7 +1,7 @@
 [Activity]
 name = Dots and boxes
 activity_version = 3
-bundle_id = org.ceibaljam.dotsandboxes
+bundle_id = org.ceibaljam.dotsandboxeS
 icon = boxes-sugar
 exec = sugar-activity activity.Activity
 license = GPLv3

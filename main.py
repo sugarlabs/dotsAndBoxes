@@ -3,7 +3,7 @@
 
 
 import pygame
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 
 LINE_SIZE = 10
@@ -67,6 +67,11 @@ class Game:
         self.back_color = (84, 185, 72)
         self.line_color = (0, 0, 0)
         self.point_color = (0, 0, 0)
+        self.horizontal = []
+        self.vertical = []
+        self.boxes = []
+        self.x_end = 0
+        self.y_end = 0
 
     def draw_line(self, r1, r2):
         pygame.draw.line(self.screen, self.line_color, r1, r2, LINE_SIZE)
@@ -151,11 +156,8 @@ class Game:
             self.y_offset = int((s_h - yy) / 2.0) + LINE_SIZE * 2
 
         self.screen.fill(self.back_color)
-        self.horizontal = []
-        self.vertical = []
-        self.boxes = []
-        self.x_end = 0
-        self.y_end = 0
+        
+        
 
         for i in range(w):
             x = i * self.box_size[0] + self.x_offset
@@ -347,8 +349,8 @@ class Game:
         self.draw_grid()
         run = True
         while run:
-            while gtk.events_pending():
-                gtk.main_iteration()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -368,8 +370,8 @@ class Game:
                 self.draw_game_end()
                 run2 = True
                 while run2:
-                    while gtk.events_pending():
-                        gtk.main_iteration()
+                    while Gtk.events_pending():
+                        Gtk.main_iteration()
 
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:

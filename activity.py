@@ -21,16 +21,17 @@
 # Alan Aguiar <alanjas@gmail.com>
 
 
-import gtk
+from gi.repository import Gtk
+from gi.repository import Gdk
 import sugargame.canvas
 
-from sugar.activity import activity
-from sugar.graphics.toolbarbox import ToolbarBox
-from sugar.activity.widgets import ActivityToolbarButton
-from sugar.activity.widgets import StopButton
-from sugar.graphics.colorbutton import ColorToolButton
-from sugar.graphics.toolbarbox import ToolbarButton
-from sugar.graphics.toolbutton import ToolButton
+from sugar3.activity import activity
+from sugar3.graphics.toolbarbox import ToolbarBox
+from sugar3.activity.widgets import ActivityToolbarButton
+from sugar3.activity.widgets import StopButton
+from sugar3.graphics.colorbutton import ColorToolButton
+from sugar3.graphics.toolbarbox import ToolbarButton
+from sugar3.graphics.toolbutton import ToolButton
 
 from gettext import gettext as _
 
@@ -71,26 +72,26 @@ class Activity(activity.Activity):
         new_game.set_tooltip(_('New game'))
         toolbar_box.toolbar.insert(new_game, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         toolbar_box.toolbar.insert(separator, -1)
         separator.show()
 
         #current
-        item = gtk.ToolItem()
-        label = gtk.Label()
+        item = Gtk.ToolItem()
+        label = Gtk.Label()
         label.set_text(' %s ' % _('Current player:'))
         item.add(label)
         toolbar_box.toolbar.insert(item, -1)
 
         #player
-        item = gtk.ToolItem()
-        self.current_label = gtk.Label()
+        item = Gtk.ToolItem()
+        self.current_label = Gtk.Label()
         self.current_label.set_text(' %s ' % _('Player 1'))
         item.add(self.current_label)
         toolbar_box.toolbar.insert(item, -1)
 
         # end separator
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.props.draw = False
         separator.set_expand(True)
         toolbar_box.toolbar.insert(separator, -1)
@@ -104,17 +105,17 @@ class Activity(activity.Activity):
 
     def build_size_toolbar(self, toolbox):
 
-        size_bar = gtk.Toolbar()
+        size_bar = Gtk.Toolbar()
 
         #Horizontal
-        item1 = gtk.ToolItem()
-        label1 = gtk.Label()
+        item1 = Gtk.ToolItem()
+        label1 = Gtk.Label()
         label1.set_text(' %s ' % _('H'))
         item1.add(label1)
         size_bar.insert(item1, -1)
 
-        item2 = gtk.ToolItem()
-        self.h_spin = gtk.SpinButton()
+        item2 = Gtk.ToolItem()
+        self.h_spin = Gtk.SpinButton()
         self.h_spin.set_range(2, 30)
         self.h_spin.set_increments(1, 2)
         self.h_spin.props.value = self.game_size[0]
@@ -123,14 +124,14 @@ class Activity(activity.Activity):
         size_bar.insert(item2, -1)
 
         #Vertical
-        item3 = gtk.ToolItem()
-        label2 = gtk.Label()
+        item3 = Gtk.ToolItem()
+        label2 = Gtk.Label()
         label2.set_text(' %s ' % _('V'))
         item3.add(label2)
         size_bar.insert(item3, -1)
 
-        item4 = gtk.ToolItem()
-        self.v_spin = gtk.SpinButton()
+        item4 = Gtk.ToolItem()
+        self.v_spin = Gtk.SpinButton()
         self.v_spin.set_range(2, 20)
         self.v_spin.set_increments(1, 2)
         self.v_spin.props.value = self.game_size[1]
@@ -147,40 +148,40 @@ class Activity(activity.Activity):
 
     def build_colors_toolbar(self, toolbox):
 
-        colors_bar = gtk.Toolbar()
+        colors_bar = Gtk.Toolbar()
 
         ########################################################################
         # Point color
-        item = gtk.ToolItem()
-        label = gtk.Label()
+        item = Gtk.ToolItem()
+        label = Gtk.Label()
         label.set_text('%s ' % _('Points'))
         item.add(label)
         colors_bar.insert(item, -1)
 
         # select color
-        item = gtk.ToolItem()
+        item = Gtk.ToolItem()
         fill_color = ColorToolButton()
         fill_color.connect('notify::color', self.color_point_change)
         item.add(fill_color)
         colors_bar.insert(item, -1)
 
         # Separator
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         colors_bar.insert(separator, -1)
         separator.show()
 
         ########################################################################
         # Back color
-        item = gtk.ToolItem()
-        label = gtk.Label()
+        item = Gtk.ToolItem()
+        label = Gtk.Label()
         label.set_text('%s ' % _('Background'))
         item.add(label)
         colors_bar.insert(item, -1)
 
         # select color
-        item = gtk.ToolItem()
+        item = Gtk.ToolItem()
         _fill_color = ColorToolButton()
-        c = gtk.gdk.Color()
+        c = Gdk.RGBA()
         c.red = 21588
         c.green = 47546
         c.blue = 18504
@@ -190,42 +191,42 @@ class Activity(activity.Activity):
         colors_bar.insert(item, -1)
 
         # Separator
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         colors_bar.insert(separator, -1)
         separator.show()
 
         ########################################################################
         # Line color
-        item = gtk.ToolItem()
-        label = gtk.Label()
+        item = Gtk.ToolItem()
+        label = Gtk.Label()
         label.set_text('%s ' % _('Lines'))
         item.add(label)
         colors_bar.insert(item, -1)
 
         # select color
-        item = gtk.ToolItem()
+        item = Gtk.ToolItem()
         _fill_color = ColorToolButton()
         _fill_color.connect('notify::color', self.color_line_change)
         item.add(_fill_color)
         colors_bar.insert(item, -1)
 
         # Separator
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         colors_bar.insert(separator, -1)
         separator.show()
 
         ########################################################################
         # Owner color
-        item = gtk.ToolItem()
-        label = gtk.Label()
+        item = Gtk.ToolItem()
+        label = Gtk.Label()
         label.set_text('%s ' % _('Owner'))
         item.add(label)
         colors_bar.insert(item, -1)
 
         # select color
-        item = gtk.ToolItem()
+        item = Gtk.ToolItem()
         _fill_color = ColorToolButton()
-        c = gtk.gdk.Color()
+        c = Gdk.RGBA()
         c.red = 65535
         _fill_color.set_color(c)
         _fill_color.connect('notify::color', self.color_owner_change)
