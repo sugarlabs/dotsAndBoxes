@@ -7,75 +7,57 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-14 20:30-0300\n"
-"PO-Revision-Date: 2013-12-18 06:30+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2017-02-10 22:23+0000\n"
+"Last-Translator: Soori <mbarzegar82@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: en\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1486765415.000000\n"
 
 #: activity/activity.info:2
 msgid "Dots and boxes"
-msgstr "Dots and boxes"
+msgstr "نقطه و جعبه"
 
 #: activity.py:74 activity.py:270
 msgid "Player 1"
-msgstr "Player 1"
+msgstr "بازیکن ۱"
 
 #: activity.py:98
 msgid "H"
-msgstr "H"
+msgstr "اچ H"
 
 #: activity.py:114
 msgid "V"
-msgstr "V"
+msgstr "وی V"
 
 #: activity.py:128
 msgid "Board size"
-msgstr "Board size"
+msgstr "اندازه صفحه"
 
 #: activity.py:142
 msgid "Points"
-msgstr "Points"
+msgstr "نقاط"
 
 #: activity.py:162
 msgid "Background"
-msgstr "Background"
+msgstr "پس زمینه"
 
 #: activity.py:187
 msgid "Lines"
-msgstr "Lines"
+msgstr "خطوط"
 
 #: activity.py:207
 msgid "Owner"
-msgstr "Owner"
+msgstr "مالک"
 
 #: activity.py:222
 msgid "Colors"
-msgstr "Colors"
+msgstr "رنگها"
 
 #: activity.py:272
 msgid "Player 2"
-msgstr "Player 2"
-
-#~ msgid "The classical \"Dots and Boxes\" game"
-#~ msgstr "The classical \"Dots and Boxes\" game"
-
-#~ msgid "New game"
-#~ msgstr "New game"
-
-#~ msgid "Current player:"
-#~ msgstr "Current player:"
-
-#~ msgid "Tie"
-#~ msgstr "Tie"
-
-#, python-format
-#~ msgid "Player %s win!"
-#~ msgstr "Player %s win!"
-
-#~ msgid "Click to start a new game"
-#~ msgstr "Click to start a new game"
+msgstr "بازیکن ۲"

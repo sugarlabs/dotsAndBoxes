@@ -2,28 +2,30 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-14 20:30-0300\n"
-"PO-Revision-Date: 2013-12-18 06:30+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2016-12-21 21:14+0000\n"
+"Last-Translator: unkuiri <unkuiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: en\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1482354841.000000\n"
 
 #: activity/activity.info:2
 msgid "Dots and boxes"
-msgstr "Dots and boxes"
+msgstr "Pontos e caixas"
 
 #: activity.py:74 activity.py:270
 msgid "Player 1"
-msgstr "Player 1"
+msgstr "Jogador 1"
 
 #: activity.py:98
 msgid "H"
@@ -35,47 +37,28 @@ msgstr "V"
 
 #: activity.py:128
 msgid "Board size"
-msgstr "Board size"
+msgstr "Tamanho do tabuleiro"
 
 #: activity.py:142
 msgid "Points"
-msgstr "Points"
+msgstr "Pontos"
 
 #: activity.py:162
 msgid "Background"
-msgstr "Background"
+msgstr "Fundo"
 
 #: activity.py:187
 msgid "Lines"
-msgstr "Lines"
+msgstr "Linhas"
 
 #: activity.py:207
 msgid "Owner"
-msgstr "Owner"
+msgstr "Dono"
 
 #: activity.py:222
 msgid "Colors"
-msgstr "Colors"
+msgstr "Cores"
 
 #: activity.py:272
 msgid "Player 2"
-msgstr "Player 2"
-
-#~ msgid "The classical \"Dots and Boxes\" game"
-#~ msgstr "The classical \"Dots and Boxes\" game"
-
-#~ msgid "New game"
-#~ msgstr "New game"
-
-#~ msgid "Current player:"
-#~ msgstr "Current player:"
-
-#~ msgid "Tie"
-#~ msgstr "Tie"
-
-#, python-format
-#~ msgid "Player %s win!"
-#~ msgstr "Player %s win!"
-
-#~ msgid "Click to start a new game"
-#~ msgstr "Click to start a new game"
+msgstr "Jogador 2"
