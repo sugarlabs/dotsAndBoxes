@@ -6,3 +6,4 @@ icon = boxes-sugar
 exec = sugar-activity activity.Activity
 license = GPLv3
 summary = The classical "Dots and Boxes" game
+repository = https://github.com/sugarlabs/dotsAndBoxes.git
