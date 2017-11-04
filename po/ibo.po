@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-14 20:30-0300\n"
-"PO-Revision-Date: 2016-03-03 04:35+0000\n"
+"PO-Revision-Date: 2017-10-17 00:17+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ibo\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1456979753.000000\n"
+"X-POOTLE-MTIME: 1508199453.000000\n"
 
 #: activity/activity.info:2
 msgid "Dots and boxes"
@@ -25,7 +25,7 @@ msgstr "Ntụpọ na igbe"
 
 #: activity.py:74 activity.py:270
 msgid "Player 1"
-msgstr "onye ejije nkem mbu"
+msgstr "Onye ejije nkem mbu"
 
 #: activity.py:98
 msgid "H"
@@ -37,7 +37,7 @@ msgstr "V"
 
 #: activity.py:128
 msgid "Board size"
-msgstr "saiz boodu"
+msgstr "Saiz boodu"
 
 #: activity.py:142
 #, fuzzy
@@ -46,20 +46,20 @@ msgstr "Points"
 
 #: activity.py:162
 msgid "Background"
-msgstr "e si zụlite"
+msgstr "E si zụlite"
 
 #: activity.py:187
 msgid "Lines"
-msgstr "akara"
+msgstr "Akara"
 
 #: activity.py:207
 msgid "Owner"
-msgstr "onye nwe"
+msgstr "Onye nwe"
 
 #: activity.py:222
 msgid "Colors"
-msgstr "agba"
+msgstr "Agba"
 
 #: activity.py:272
 msgid "Player 2"
-msgstr "onye ejije nke abuo"
+msgstr "Onye ejije nke abuo"
