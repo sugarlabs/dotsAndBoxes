@@ -22,10 +22,10 @@
 
 
 import gi
-gi.require_version('Gtk', '3.0')
-
-from gi.repository import Gtk
+gi.require_version('Gdk', '3.0')
 from gi.repository import Gdk
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
 import sugargame.canvas
 
 from sugar3.activity import activity
@@ -117,8 +117,11 @@ class Activity(activity.Activity):
         item1.add(label1)
         size_bar.insert(item1, -1)
 
+        grayed = Gdk.Color(20000.0, 20000.0, 20000.0)
+
         item2 = Gtk.ToolItem()
         self.h_spin = Gtk.SpinButton()
+        self.h_spin.modify_bg(Gtk.StateType.NORMAL, grayed)
         self.h_spin.set_range(2, 30)
         self.h_spin.set_increments(1, 2)
         self.h_spin.props.value = self.game_size[0]
@@ -135,6 +138,7 @@ class Activity(activity.Activity):
 
         item4 = Gtk.ToolItem()
         self.v_spin = Gtk.SpinButton()
+        self.v_spin.modify_bg(Gtk.StateType.NORMAL, grayed)
         self.v_spin.set_range(2, 20)
         self.v_spin.set_increments(1, 2)
         self.v_spin.props.value = self.game_size[1]
