@@ -184,10 +184,7 @@ class Activity(activity.Activity):
         # select color
         item = Gtk.ToolItem()
         _fill_color = ColorToolButton()
-        c = Gdk.RGBA()
-        c.red = 21588
-        c.green = 47546
-        c.blue = 18504
+        c = Gdk.Color(red=21588, green=47546, blue=18504)
         _fill_color.set_color(c)
         _fill_color.connect('notify::color', self.color_back_change)
         item.add(_fill_color)
@@ -229,8 +226,7 @@ class Activity(activity.Activity):
         # select color
         item = Gtk.ToolItem()
         _fill_color = ColorToolButton()
-        c = Gdk.RGBA()
-        c.red = 65535
+        c = Gdk.Color(red=65535, green=0, blue=0)
         _fill_color.set_color(c)
         _fill_color.connect('notify::color', self.color_owner_change)
         item.add(_fill_color)
