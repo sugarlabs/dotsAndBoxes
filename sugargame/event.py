@@ -143,7 +143,7 @@ class Translator(object):
         
     def _keymods(self):
         mod = 0
-        for key_val, mod_val in self.mod_map.iteritems():
+        for key_val, mod_val in self.mod_map.items():
             mod |= self.__keystate[key_val] and mod_val
         return mod
         
@@ -164,7 +164,7 @@ class Translator(object):
             # view source request, specially handled...
             self._mainwindow.view_source()
         else:
-            print 'Key %s unrecognized' % key
+            print('Key %s unrecognized' % key)
             
         if keycode is not None:
             if type == pygame.KEYDOWN:
@@ -172,10 +172,10 @@ class Translator(object):
             self.__keystate[keycode] = type == pygame.KEYDOWN
             if type == pygame.KEYUP:
                 mod = self._keymods()
-            ukey = unichr(Gdk.keyval_to_unicode(event.keyval))
+            ukey = chr(Gdk.keyval_to_unicode(event.keyval))
             if ukey == '\000':
                 ukey = ''
-            evt = pygame.event.Event(type, key=keycode, unicode=ukey, mod=mod)
+            evt = pygame.event.Event(type, key=keycode, str=ukey, mod=mod)
             self._post(evt)
             
         return True
@@ -250,9 +250,9 @@ class Translator(object):
     def _post(self, evt):
         try:
             pygame.event.post(evt)
-        except pygame.error, e:
+        except pygame.error as e:
             if str(e) == 'Event queue full':
-                print "Event queue full!"
+                print("Event queue full!")
                 pass
             else:
                 raise e
