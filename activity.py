@@ -27,6 +27,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import Gdk
 import sugargame.canvas
+import pygame
 
 from sugar3.activity import activity
 from sugar3.graphics.toolbarbox import ToolbarBox
@@ -48,11 +49,13 @@ class Activity(activity.Activity):
         self.game_size = (8, 6)
         self.game = main.Game(self)
         self.build_toolbar()
-        self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
+        self._pygamecanvas = sugargame.canvas.PygameCanvas(self,
+            main= self.game.run,
+            modules= [pygame.display])
+
         self.set_canvas(self._pygamecanvas)
         self._pygamecanvas.grab_focus()
-        self._pygamecanvas.run_pygame(self.game.run)
-
+        
     def build_toolbar(self):
 
         self.max_participants = 1
