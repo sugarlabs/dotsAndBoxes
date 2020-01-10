@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Boxes
@@ -27,6 +27,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import Gdk
 import sugargame.canvas
+import pygame
 
 from sugar3.activity import activity
 from sugar3.graphics.toolbarbox import ToolbarBox
@@ -48,10 +49,11 @@ class Activity(activity.Activity):
         self.game_size = (8, 6)
         self.game = main.Game(self)
         self.build_toolbar()
-        self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
+        self._pygamecanvas = sugargame.canvas.PygameCanvas(
+            self, main=self.game.run, modules=[pygame.display, pygame.font]
+        )
         self.set_canvas(self._pygamecanvas)
         self._pygamecanvas.grab_focus()
-        self._pygamecanvas.run_pygame(self.game.run)
 
     def build_toolbar(self):
 
@@ -73,24 +75,29 @@ class Activity(activity.Activity):
         new_game = ToolButton('new-game')
         new_game.connect('clicked', self._new_game)
         new_game.set_tooltip(_('New game'))
+        new_game.show()
         toolbar_box.toolbar.insert(new_game, -1)
 
         separator = Gtk.SeparatorToolItem()
         toolbar_box.toolbar.insert(separator, -1)
         separator.show()
 
-        #current
+        # current
         item = Gtk.ToolItem()
         label = Gtk.Label()
         label.set_text(' %s ' % _('Current player:'))
+        label.show()
         item.add(label)
+        item.show()
         toolbar_box.toolbar.insert(item, -1)
 
-        #player
+        # player
         item = Gtk.ToolItem()
         self.current_label = Gtk.Label()
         self.current_label.set_text(' %s ' % _('Player 1'))
         item.add(self.current_label)
+        self.current_label.show()
+        item.show()
         toolbar_box.toolbar.insert(item, -1)
 
         # end separator
@@ -104,13 +111,11 @@ class Activity(activity.Activity):
         toolbar_box.toolbar.insert(stop_button, -1)
         stop_button.show()
 
-        self.show_all()
-
     def build_size_toolbar(self, toolbox):
 
         size_bar = Gtk.Toolbar()
 
-        #Horizontal
+        # Horizontal
         item1 = Gtk.ToolItem()
         label1 = Gtk.Label()
         label1.set_text(' %s ' % _('H'))
@@ -126,7 +131,7 @@ class Activity(activity.Activity):
         item2.add(self.h_spin)
         size_bar.insert(item2, -1)
 
-        #Vertical
+        # Vertical
         item3 = Gtk.ToolItem()
         label2 = Gtk.Label()
         label2.set_text(' %s ' % _('V'))
@@ -144,8 +149,8 @@ class Activity(activity.Activity):
 
         size_bar.show_all()
         size_button = ToolbarButton(label=_('Board size'),
-                page=size_bar,
-                icon_name='preferences-system')
+                                    page=size_bar,
+                                    icon_name='preferences-system')
         toolbox.toolbar.insert(size_button, -1)
         size_button.show()
 
@@ -234,8 +239,8 @@ class Activity(activity.Activity):
 
         colors_bar.show_all()
         colors_button = ToolbarButton(label=_('Colors'),
-                page=colors_bar,
-                icon_name='toolbar-colors')
+                                      page=colors_bar,
+                                      icon_name='toolbar-colors')
         toolbox.toolbar.insert(colors_button, -1)
         colors_button.show()
 
@@ -274,9 +279,9 @@ class Activity(activity.Activity):
         self.game.set_owner_color(new_color)
 
     def color_to_rgb(self, color):
-        r = color.red *255 / 65536
-        g = color.green *255 / 65536
-        b = color.blue *255 / 65536
+        r = color.red * 255 / 65536
+        g = color.green * 255 / 65536
+        b = color.blue * 255 / 65536
         return (r, g, b)
 
     def set_current_player(self, player):
@@ -293,4 +298,3 @@ class Activity(activity.Activity):
 
     def write_file(self, file_path):
         pass
-
