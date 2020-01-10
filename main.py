@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 
@@ -11,6 +11,7 @@ T = 15
 COLOR_OWNER = (255, 0, 0)
 PLAYER_A = 0
 PLAYER_B = 0
+
 
 class box:
 
@@ -54,6 +55,7 @@ class box:
         textrect.center = (self.pos_x, self.pos_y)
         self.screen.blit(text, textrect)
 
+
 class Game:
 
     def __init__(self, parent=None):
@@ -80,7 +82,7 @@ class Game:
         s = self.screen.get_size()
         alphasurface = pygame.Surface(s)
         alphasurface.convert()
-        alphasurface.fill((100,100,100))
+        alphasurface.fill((100, 100, 100))
         alphasurface.set_alpha(200)
         self.screen.blit(alphasurface, (0, 0))
         winner = None
@@ -97,7 +99,8 @@ class Game:
         s = self.screen.get_size()
         textrect.center = (int(s[0] / 2), int(s[1] / 2))
         self.screen.blit(text, textrect)
-        text = self.fuente.render(_('Click to start a new game'), 1, COLOR_OWNER)
+        text = self.fuente.render(
+            _('Click to start a new game'), 1, COLOR_OWNER)
         textrect = text.get_rect()
         s = self.screen.get_size()
         textrect.center = (int(s[0] / 2), int(s[1] / 2) + 60)
@@ -156,8 +159,6 @@ class Game:
             self.y_offset = int((s_h - yy) / 2.0) + LINE_SIZE * 2
 
         self.screen.fill(self.back_color)
-        
-        
 
         for i in range(w):
             x = i * self.box_size[0] + self.x_offset
@@ -169,11 +170,14 @@ class Game:
                     self.vertical.append(y)
                 if j > 0:
                     v_boxes.append(box(self, i - 1, j - 1))
-                pygame.draw.circle(self.screen, self.point_color, (x, y), LINE_SIZE)
+                pygame.draw.circle(
+                    self.screen, self.point_color, (x, y), LINE_SIZE)
             if i > 0:
                 self.boxes.append(v_boxes)
-        self.x_end = (len(self.horizontal) - 1) * self.box_size[0] + self.x_offset
-        self.y_end = (len(self.vertical) - 1) * self.box_size[1] + self.y_offset
+        self.x_end = (len(self.horizontal) - 1) * \
+            self.box_size[0] + self.x_offset
+        self.y_end = (len(self.vertical) - 1) * \
+            self.box_size[1] + self.y_offset
 
     def where_x(self, x):
         for i in range(len(self.horizontal)):
@@ -216,7 +220,7 @@ class Game:
                         if b2.check():
                             b2.setOwner(self.current)
                             con = True
-                    self.draw_line((r1[0],r2[0]), (r1[0],r2[1]))
+                    self.draw_line((r1[0], r2[0]), (r1[0], r2[1]))
                     return con
                 elif x > (r1[1] - T):
                     x_b = r1[2] - 1
@@ -235,7 +239,7 @@ class Game:
                         if b2.check():
                             b2.setOwner(self.current)
                             con = True
-                    self.draw_line((r1[1],r2[0]), (r1[1],r2[1]))
+                    self.draw_line((r1[1], r2[0]), (r1[1], r2[1]))
                     return con
         else:
             if (x > (self.x_offset - T)) and (x < self.x_offset):
@@ -250,7 +254,8 @@ class Game:
                     if b.check():
                         b.setOwner(self.current)
                         con = True
-                    self.draw_line((self.x_offset,r2[0]), (self.x_offset,r2[1]))
+                    self.draw_line(
+                        (self.x_offset, r2[0]), (self.x_offset, r2[1]))
                     return con
             elif (x < (self.x_end + T)) and (x > self.x_end):
                 if not(r2[0] == False):
@@ -264,7 +269,7 @@ class Game:
                     if b.check():
                         b.setOwner(self.current)
                         con = True
-                    self.draw_line((self.x_end,r2[0]), (self.x_end,r2[1]))
+                    self.draw_line((self.x_end, r2[0]), (self.x_end, r2[1]))
                     return con
 
         if not(r2[0] == False):
@@ -281,12 +286,12 @@ class Game:
                         b.setOwner(self.current)
                         con = True
                     if y_b > 0:
-                        b2 = self.boxes[x_b][y_b-1]
+                        b2 = self.boxes[x_b][y_b - 1]
                         b2.down = 1
                         if b2.check():
                             b2.setOwner(self.current)
                             con = True
-                    self.draw_line((r1[0],r2[0]), (r1[1],r2[0]))
+                    self.draw_line((r1[0], r2[0]), (r1[1], r2[0]))
                     return con
                 elif y > (r2[1] - T):
                     x_b = r1[2] - 1
@@ -300,12 +305,12 @@ class Game:
                         b.setOwner(self.current)
                         con = True
                     if y_b < self.grid_size[1] - 2:
-                        b2 = self.boxes[x_b][y_b+1]
+                        b2 = self.boxes[x_b][y_b + 1]
                         b2.up = 1
                         if b2.check():
                             b2.setOwner(self.current)
                             con = True
-                    self.draw_line((r1[0],r2[1]), (r1[1],r2[1]))
+                    self.draw_line((r1[0], r2[1]), (r1[1], r2[1]))
                     return con
         else:
             if (y > self.y_offset - T) and (y < self.y_offset):
@@ -320,7 +325,8 @@ class Game:
                     if b.check():
                         b.setOwner(self.current)
                         con = True
-                    self.draw_line((r1[0],self.y_offset), (r1[1],self.y_offset))
+                    self.draw_line((r1[0], self.y_offset),
+                                   (r1[1], self.y_offset))
                     return con
             elif (y < (self.y_end + T)) and (y > self.y_end):
                 if not(r1[0] == False):
@@ -333,12 +339,10 @@ class Game:
                     b.down = 1
                     if b.check():
                         b.setOwner(self.current)
-                    self.draw_line((r1[0],self.y_end), (r1[1],self.y_end))
+                    self.draw_line((r1[0], self.y_end), (r1[1], self.y_end))
                     return False
 
-
     def run(self):
-        pygame.init()
         self.screen = pygame.display.get_surface()
         if not self.screen:
             self.screen = pygame.display.set_mode((900, 700))
@@ -381,6 +385,7 @@ class Game:
                             run2 = False
                             self.draw_grid()
                     pygame.display.flip()
+
 
 if __name__ == '__main__':
     g = Game()
