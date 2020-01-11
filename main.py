@@ -59,6 +59,8 @@ class box:
 class Game:
 
     def __init__(self, parent=None):
+        # Set up a clock for managing the frame rate.
+        self.clock = pygame.time.Clock()
         self.parent = parent
         self.current = 'A'
         self.grid_size = (8, 6)
@@ -385,6 +387,8 @@ class Game:
                             run2 = False
                             self.draw_grid()
                     pygame.display.flip()
+            # Try to stay at 30 FPS
+            self.clock.tick(30)
 
 
 if __name__ == '__main__':
