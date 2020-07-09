@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 00:31-0500\n"
+"POT-Creation-Date: 2017-07-12 16:56+1000\n"
 "PO-Revision-Date: 2013-12-22 13:57+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,74 +17,72 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#. TRANS: "name" option from activity.info file
-#: main.py:343
+#: activity/activity.info:2 main.py:345
 msgid "Dots and boxes"
 msgstr "Kvadrater"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
 msgid "The classical \"Dots and Boxes\" game"
 msgstr "Det klassiske spil \"Kvadrater\""
 
-#: activity.py:71
+#: activity.py:75
 msgid "New game"
 msgstr "Nyt spil"
 
-#: activity.py:81
+#: activity.py:85
 msgid "Current player:"
 msgstr "Aktuel spiller:"
 
-#: activity.py:88 activity.py:284
+#: activity.py:92 activity.py:288
 msgid "Player 1"
 msgstr "Spiller 1"
 
-#: activity.py:112
+#: activity.py:116
 msgid "H"
 msgstr "V"
 
-#: activity.py:128
+#: activity.py:132
 msgid "V"
 msgstr "L"
 
-#: activity.py:142
+#: activity.py:146
 msgid "Board size"
 msgstr "Brætstørrelse"
 
-#: activity.py:156
+#: activity.py:160
 msgid "Points"
 msgstr "Point"
 
-#: activity.py:176
+#: activity.py:180
 msgid "Background"
 msgstr "Baggrund"
 
-#: activity.py:201
+#: activity.py:205
 msgid "Lines"
 msgstr "Streger"
 
-#: activity.py:221
+#: activity.py:225
 msgid "Owner"
 msgstr "Ejer"
 
-#: activity.py:236
+#: activity.py:240
 msgid "Colors"
 msgstr "Farver"
 
-#: activity.py:286
+#: activity.py:290
 msgid "Player 2"
 msgstr "Spiller 2"
 
-#: main.py:87
+#: main.py:92
 msgid "Tie"
 msgstr "Uafgjort"
 
-#: main.py:89
+#: main.py:94
 #, python-format
 msgid "Player %s win!"
 msgstr "Spiller %s vinder!"
 
-#: main.py:95
+#: main.py:100
 msgid "Click to start a new game"
 msgstr "Klik for at starte et nyt spil"
 

@@ -2,12 +2,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-14 20:30-0300\n"
+"POT-Creation-Date: 2017-07-12 16:56+1000\n"
 "PO-Revision-Date: 2017-03-29 23:15+0000\n"
 "Last-Translator: Anders <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,46 +18,71 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1490829342.000000\n"
 
-#: activity/activity.info:2
+#: activity/activity.info:2 main.py:345
 msgid "Dots and boxes"
 msgstr "Prickar och rutor"
 
-#: activity.py:74 activity.py:270
+#: activity/activity.info:3
+msgid "The classical \"Dots and Boxes\" game"
+msgstr ""
+
+#: activity.py:75
+msgid "New game"
+msgstr ""
+
+#: activity.py:85
+msgid "Current player:"
+msgstr ""
+
+#: activity.py:92 activity.py:288
 msgid "Player 1"
 msgstr "Spelare 1"
 
-#: activity.py:98
+#: activity.py:116
 msgid "H"
 msgstr "H"
 
-#: activity.py:114
+#: activity.py:132
 msgid "V"
 msgstr "V"
 
-#: activity.py:128
+#: activity.py:146
 msgid "Board size"
 msgstr "Brädstorlek"
 
-#: activity.py:142
+#: activity.py:160
 msgid "Points"
 msgstr "Poäng"
 
-#: activity.py:162
+#: activity.py:180
 msgid "Background"
 msgstr "Bakgrund"
 
-#: activity.py:187
+#: activity.py:205
 msgid "Lines"
 msgstr "Linjer"
 
-#: activity.py:207
+#: activity.py:225
 msgid "Owner"
 msgstr "Ägare"
 
-#: activity.py:222
+#: activity.py:240
 msgid "Colors"
 msgstr "Färger"
 
-#: activity.py:272
+#: activity.py:290
 msgid "Player 2"
 msgstr "Spelare 2"
+
+#: main.py:92
+msgid "Tie"
+msgstr ""
+
+#: main.py:94
+#, python-format
+msgid "Player %s win!"
+msgstr ""
+
+#: main.py:100
+msgid "Click to start a new game"
+msgstr ""
