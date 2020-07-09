@@ -7,20 +7,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-12 16:56+1000\n"
-"PO-Revision-Date: 2017-10-17 00:17+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"PO-Revision-Date: 2017-11-10 22:10+0000\n"
+"Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ibo\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1508199453.000000\n"
+"X-POOTLE-MTIME: 1510351833.000000\n"
 
 #: activity/activity.info:2 main.py:345
 msgid "Dots and boxes"
-msgstr "Ntụpọ na igbe"
+msgstr ""
 
 #: activity/activity.info:3
 msgid "The classical \"Dots and Boxes\" game"
@@ -28,7 +29,7 @@ msgstr ""
 
 #: activity.py:75
 msgid "New game"
-msgstr ""
+msgstr "Naujas žaidimas"
 
 #: activity.py:85
 msgid "Current player:"
@@ -36,44 +37,43 @@ msgstr ""
 
 #: activity.py:92 activity.py:288
 msgid "Player 1"
-msgstr "Onye ejije nkem mbu"
+msgstr ""
 
 #: activity.py:116
 msgid "H"
-msgstr "H"
+msgstr ""
 
 #: activity.py:132
 msgid "V"
-msgstr "V"
+msgstr ""
 
 #: activity.py:146
 msgid "Board size"
-msgstr "Saiz boodu"
+msgstr ""
 
 #: activity.py:160
-#, fuzzy
 msgid "Points"
-msgstr "Points"
+msgstr ""
 
 #: activity.py:180
 msgid "Background"
-msgstr "E si zụlite"
+msgstr ""
 
 #: activity.py:205
 msgid "Lines"
-msgstr "Akara"
+msgstr ""
 
 #: activity.py:225
 msgid "Owner"
-msgstr "Onye nwe"
+msgstr ""
 
 #: activity.py:240
 msgid "Colors"
-msgstr "Agba"
+msgstr ""
 
 #: activity.py:290
 msgid "Player 2"
-msgstr "Onye ejije nke abuo"
+msgstr ""
 
 #: main.py:92
 msgid "Tie"
