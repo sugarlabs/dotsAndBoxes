@@ -1,0 +1,38 @@
+v4
+
+* Regenerate POT file (James Cameron, Jui Pradhan)
+* Translations updated (James Cameron, Jui Pradhan)
+* Fix Messed up lines after change in H and V values (Jui Pradhan)
+* Fix IndexError (Jui Pradhan)
+* Reduce CPU usgae (Kiy4h)
+* Port to python3 (Kiy4h)
+* Update to sugargame 1.3 (Kiy4h)
+* Fix Assertion Error (Aniket Mathur)
+* Update Screenshots (Vipul Gupta)
+* Update Activity metadata (Vipul Gupta)
+* Update repository (James Cameron)
+* Fix PyGI warnings (James Cameron)
+* Port to GTK 3 (zeecoder606)
+* Add README and License (Alan Aguiar)
+* Fix strings (Alan Aguiar)
+* Restore default board size (Alan Aguiar)
+
+v3
+
+* add new game button (Alan Aguiar),
+* add game end message (Alan Aguiar),
+* fill points (Alan Aguiar),
+* fix gnome use (Alan Aguiar),
+* Update sugargame (Alan Aguiar)
+
+v2
+
+* Sugarized icon (Alan Aguiar),
+* update icon (Alan Aguiar),
+* Show current Player (Alan Aguiar),
+* Color selection of points (Alan Aguiar),
+* Fix owner box positions and sizes (Alan Aguiar)
+
+v1
+
+* Initial release
