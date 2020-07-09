@@ -109,6 +109,9 @@ class Game:
         self.screen.blit(text, textrect)
 
     def set_board_size(self, size):
+        self.horizontal = []
+        self.vertical = []
+        self.boxes = []
         self.grid_size = size
         self.calc_grid_cant()
         self.draw_grid()
