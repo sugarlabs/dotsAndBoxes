@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-12 16:56+1000\n"
+"POT-Creation-Date: 2020-07-09 16:16+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,71 +17,71 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: activity/activity.info:2 main.py:345
+#: activity/activity.info:2 main.py:354
 msgid "Dots and boxes"
 msgstr ""
 
 #: activity/activity.info:3
-msgid "The classical \"Dots and Boxes\" game"
+msgid "The classical \"Dots and Boxes\" game."
 msgstr ""
 
-#: activity.py:75
+#: activity.py:77
 msgid "New game"
 msgstr ""
 
-#: activity.py:85
+#: activity.py:88
 msgid "Current player:"
 msgstr ""
 
-#: activity.py:92 activity.py:288
+#: activity.py:97 activity.py:289
 msgid "Player 1"
 msgstr ""
 
-#: activity.py:116
+#: activity.py:121
 msgid "H"
 msgstr ""
 
-#: activity.py:132
+#: activity.py:137
 msgid "V"
 msgstr ""
 
-#: activity.py:146
+#: activity.py:151
 msgid "Board size"
 msgstr ""
 
-#: activity.py:160
+#: activity.py:165
 msgid "Points"
 msgstr ""
 
-#: activity.py:180
+#: activity.py:185
 msgid "Background"
 msgstr ""
 
-#: activity.py:205
+#: activity.py:207
 msgid "Lines"
 msgstr ""
 
-#: activity.py:225
+#: activity.py:227
 msgid "Owner"
 msgstr ""
 
-#: activity.py:240
+#: activity.py:241
 msgid "Colors"
 msgstr ""
 
-#: activity.py:290
+#: activity.py:291
 msgid "Player 2"
 msgstr ""
 
-#: main.py:92
+#: main.py:96
 msgid "Tie"
 msgstr ""
 
-#: main.py:94
+#: main.py:98
 #, python-format
 msgid "Player %s win!"
 msgstr ""
 
-#: main.py:100
+#: main.py:105
 msgid "Click to start a new game"
 msgstr ""
