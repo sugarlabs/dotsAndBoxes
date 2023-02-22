@@ -122,15 +122,38 @@ class Game:
     def set_point_color(self, color):
         self.point_color = color
         self.draw_grid()
+        self.draw_board()
 
     def set_back_color(self, color):
         self.back_color = color
         self.draw_grid()
+        self.draw_board()
 
     def set_line_color(self, color):
         self.line_color = color
         self.draw_grid()
+        self.draw_board()
 
+    def draw_board(self):
+        for box_row in self.boxes:
+            for box in box_row:
+                box_tr = (box.pos_x + self.box_size[0]/2, box.pos_y - self.box_size[1]/2)
+                box_tl = (box.pos_x - self.box_size[0]/2, box.pos_y - self.box_size[1]/2)
+                box_br = (box.pos_x + self.box_size[0]/2, box.pos_y + self.box_size[1]/2)
+                box_bl = (box.pos_x - self.box_size[0]/2, box.pos_y + self.box_size[1]/2)
+                
+                if box.right:
+                    self.draw_line(box_tr,box_br)
+                if box.left:
+                    self.draw_line(box_tl,box_bl)
+                if box.up:
+                    self.draw_line(box_tl,box_tr)
+                if box.down:
+                    self.draw_line(box_bl,box_br)
+
+                if box.check:
+                    box.showOwner()
+                    
     def set_owner_color(self, color):
         global COLOR_OWNER
         COLOR_OWNER = color
