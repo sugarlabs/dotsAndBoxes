@@ -137,10 +137,10 @@ class Game:
     def draw_board(self):
         for box_row in self.boxes:
             for box in box_row:
-                box_tr = (box.pos_x + self.box_size[0]/2, box.pos_y - self.box_size[1]/2)
-                box_tl = (box.pos_x - self.box_size[0]/2, box.pos_y - self.box_size[1]/2)
-                box_br = (box.pos_x + self.box_size[0]/2, box.pos_y + self.box_size[1]/2)
-                box_bl = (box.pos_x - self.box_size[0]/2, box.pos_y + self.box_size[1]/2)
+                box_tr = (box.pos_x + self.box_size[0] // 2, box.pos_y - self.box_size[1] // 2)
+                box_tl = (box.pos_x - self.box_size[0] // 2, box.pos_y - self.box_size[1] // 2)
+                box_br = (box.pos_x + self.box_size[0] // 2, box.pos_y + self.box_size[1] // 2)
+                box_bl = (box.pos_x - self.box_size[0] // 2, box.pos_y + self.box_size[1] // 2)
                 
                 if box.right:
                     self.draw_line(box_tr,box_br)
