@@ -388,8 +388,7 @@ class Game:
 
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
-                            run2 = False
-                            self.draw_grid()
+                            return
                         elif event.type == pygame.MOUSEBUTTONDOWN:
                             run2 = False
                             self.draw_grid()
