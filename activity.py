@@ -110,6 +110,7 @@ class Activity(activity.Activity):
         stop_button = StopButton(self)
         toolbar_box.toolbar.insert(stop_button, -1)
         stop_button.show()
+        stop_button.connect('clicked', self._stop_cb)
 
     def build_size_toolbar(self, toolbox):
 
@@ -292,6 +293,9 @@ class Activity(activity.Activity):
 
     def _new_game(self, widget):
         self.game.draw_grid()
+
+    def _stop_cb(self, button):
+        self.game.running = False
 
     def read_file(self, file_path):
         pass
