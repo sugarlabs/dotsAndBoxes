@@ -298,3 +298,6 @@ class Activity(activity.Activity):
 
     def write_file(self, file_path):
         pass
+
+    def get_preview(self):
+        return self._pygamecanvas.get_preview()
