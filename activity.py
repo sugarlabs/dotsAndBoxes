@@ -291,7 +291,7 @@ class Activity(activity.Activity):
             self.current_label.set_text(' %s ' % _('Player 2'))
 
     def _new_game(self, widget):
-        self.game.draw_grid()
+        self.game.reset_game()
 
     def read_file(self, file_path):
         pass

@@ -153,6 +153,15 @@ class Game:
 
                 if box.check:
                     box.showOwner()
+    
+    def reset_game(self):
+        for box_row in self.boxes:
+            for box in box_row:
+                box.up = False
+                box.down = False
+                box.left = False
+                box.right = False
+        self.draw_grid()
                     
     def set_owner_color(self, color):
         global COLOR_OWNER
