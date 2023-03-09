@@ -109,9 +109,7 @@ class Game:
         self.screen.blit(text, textrect)
 
     def set_board_size(self, size):
-        self.horizontal = []
-        self.vertical = []
-        self.boxes = []
+        self.clear_game()
         self.grid_size = size
         self.calc_grid_cant()
         self.draw_grid()
@@ -155,13 +153,13 @@ class Game:
                     box.showOwner()
     
     def reset_game(self):
-        for box_row in self.boxes:
-            for box in box_row:
-                box.up = False
-                box.down = False
-                box.left = False
-                box.right = False
+        self.clear_game()
         self.draw_grid()
+
+    def clear_game(self):
+        self.horizontal = []
+        self.vertical = []
+        self.boxes = []
                     
     def set_owner_color(self, color):
         global COLOR_OWNER
