@@ -76,9 +76,39 @@ class Game:
         self.boxes = []
         self.x_end = 0
         self.y_end = 0
+        self.help = False
 
     def draw_line(self, r1, r2):
         pygame.draw.line(self.screen, self.line_color, r1, r2, LINE_SIZE)
+
+    def draw_help(self):
+        s_w = self.screen.get_width()
+        s_h = self.screen.get_height()
+        font = pygame.font.Font(None, int(s_w / s_h * 30))
+        self.screen.fill(self.back_color)
+        self.fuente = pygame.font.Font(None, 30)
+        self.draw_text(("Help"),
+                       (s_w // 2, s_h // 10), self.fuente2)
+        self.draw_text(("The game consists of a grid of dots."),
+                       (s_w // 2, s_h // 2 - 100), font)
+        self.draw_text(("Players take turns to draw a line between two dots."),
+                       (s_w // 2, s_h // 2 - 50), font)
+        self.draw_text(("To draw a line, simply click between 2 dots"),
+                       (s_w // 2, s_h // 2), font)
+        self.draw_text(("When a player completes a box, they get a point"),
+                       (s_w // 2, s_h // 2 + 50), font)
+        self.draw_text(("and they can draw again."),
+                       (s_w // 2, s_h // 2 + 100), font)
+        self.draw_text(("The player with the most points wins."),
+                       (s_w // 2, s_h // 2 + 150), font)
+        self.draw_text(("Press 'ESC' to exit help"),
+                       (s_w // 2, s_h - 50), font)
+
+    def draw_text(self, text, pos, font, color=(0, 0, 0)):
+        text = font.render(text, 1, color)
+        textrect = text.get_rect()
+        textrect.center = pos
+        self.screen.blit(text, textrect)
 
     def draw_game_end(self):
         s = self.screen.get_size()
@@ -194,6 +224,7 @@ class Game:
             self.y_offset = int((s_h - yy) / 2.0) + LINE_SIZE * 2
 
         self.screen.fill(self.back_color)
+        self.draw_text("Press 'h' for help", (s_w // 2, s_h - 20), self.fuente)
 
         for i in range(w):
             x = i * self.box_size[0] + self.x_offset
@@ -390,7 +421,8 @@ class Game:
         while run:
             while Gtk.events_pending():
                 Gtk.main_iteration()
-
+            if self.help:
+                self.draw_help()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
@@ -404,6 +436,15 @@ class Game:
                             self.current = 'A'
                         if self.parent:
                             self.parent.set_current_player(self.current)
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_h:
+                        self.help = True
+                        pygame.display.flip()
+                    if event.key == pygame.K_ESCAPE:
+                        if self.help:
+                            self.help = False
+                            self.draw_grid()
+                            self.draw_board()
             pygame.display.flip()
             if self.grid_cant == (PLAYER_A + PLAYER_B):
                 self.draw_game_end()
