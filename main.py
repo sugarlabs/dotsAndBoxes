@@ -418,7 +418,7 @@ class Game:
                             self.draw_grid()
                         elif event.type == pygame.MOUSEBUTTONDOWN:
                             run2 = False
-                            self.draw_grid()
+                            self.reset_game()
                     pygame.display.flip()
             # Try to stay at 30 FPS
             self.clock.tick(30)
