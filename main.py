@@ -166,6 +166,15 @@ class Game:
         COLOR_OWNER = color
         self.draw_grid()
 
+    def draw_current_player(self):
+        pygame.draw.rect(self.screen, self.back_color, ((0, 0), (self.screen.get_width(), 100)))
+        text = f"Player {self.current}'s turn"
+        pos = (self.screen.get_width() // 2, 50)
+        text = self.fuente.render(text, True, COLOR_OWNER)
+        textrect = text.get_rect()
+        textrect.center = pos
+        self.screen.blit(text, textrect)
+
     def draw_grid(self):
         global PLAYER_A
         global PLAYER_B
@@ -404,6 +413,7 @@ class Game:
                             self.current = 'A'
                         if self.parent:
                             self.parent.set_current_player(self.current)
+            self.draw_current_player()
             pygame.display.flip()
             if self.grid_cant == (PLAYER_A + PLAYER_B):
                 self.draw_game_end()
