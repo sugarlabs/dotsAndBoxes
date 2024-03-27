@@ -34,6 +34,7 @@ class box:
         self.right = 0
         self.down = 0
         self.owner = None
+        self.point_sound = pygame.mixer.Sound('assets/point.ogg')
 
     def check(self):
         return ((self.up + self.left + self.right + self.down) == 4)
@@ -47,6 +48,7 @@ class box:
         else:
             self.owner = 'B'
             PLAYER_B = PLAYER_B + 1
+        self.point_sound.play()
         self.showOwner()
 
     def showOwner(self):
@@ -379,6 +381,8 @@ class Game:
 
     def run(self):
         self.screen = pygame.display.get_surface()
+        self.click_sound = pygame.mixer.Sound('assets/click.ogg')
+        self.click_sound.set_volume(0.4)
         if not self.screen:
             self.screen = pygame.display.set_mode((900, 700))
             pygame.display.set_caption(_('Dots and boxes'))
@@ -395,6 +399,7 @@ class Game:
                 if event.type == pygame.QUIT:
                     run = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
+                    self.click_sound.play()
                     pos = event.pos
                     ret = self.where(pos)
                     if ret == False:
@@ -417,6 +422,7 @@ class Game:
                             run2 = False
                             self.draw_grid()
                         elif event.type == pygame.MOUSEBUTTONDOWN:
+                            self.click_sound.play()
                             run2 = False
                             self.draw_grid()
                     pygame.display.flip()
