@@ -92,7 +92,7 @@ class Game:
             winner = 'A'
         elif PLAYER_B > PLAYER_A:
             winner = 'B'
-        if winner == None:
+        if winner is None:
             msg = _('Tie')
         else:
             msg = _('Player %s win!') % winner
@@ -135,23 +135,26 @@ class Game:
     def draw_board(self):
         for box_row in self.boxes:
             for box in box_row:
-                box_tr = (box.pos_x + self.box_size[0] // 2, box.pos_y - self.box_size[1] // 2)
-                box_tl = (box.pos_x - self.box_size[0] // 2, box.pos_y - self.box_size[1] // 2)
-                box_br = (box.pos_x + self.box_size[0] // 2, box.pos_y + self.box_size[1] // 2)
-                box_bl = (box.pos_x - self.box_size[0] // 2, box.pos_y + self.box_size[1] // 2)
-                
+                half_width = self.box_size[0] // 2
+                half_height = self.box_size[1] // 2
+
+                box_tr = (box.pos_x + half_width, box.pos_y - half_height)
+                box_tl = (box.pos_x - half_width, box.pos_y - half_height)
+                box_br = (box.pos_x + half_width, box.pos_y + half_height)
+                box_bl = (box.pos_x - half_width, box.pos_y + half_height)
+
                 if box.right:
-                    self.draw_line(box_tr,box_br)
+                    self.draw_line(box_tr, box_br)
                 if box.left:
-                    self.draw_line(box_tl,box_bl)
+                    self.draw_line(box_tl, box_bl)
                 if box.up:
-                    self.draw_line(box_tl,box_tr)
+                    self.draw_line(box_tl, box_tr)
                 if box.down:
-                    self.draw_line(box_bl,box_br)
+                    self.draw_line(box_bl, box_br)
 
                 if box.check:
                     box.showOwner()
-    
+
     def reset_game(self):
         self.clear_game()
         self.draw_grid()
@@ -160,14 +163,18 @@ class Game:
         self.horizontal = []
         self.vertical = []
         self.boxes = []
-                    
+
     def set_owner_color(self, color):
         global COLOR_OWNER
         COLOR_OWNER = color
         self.draw_grid()
 
     def draw_current_player(self):
-        pygame.draw.rect(self.screen, self.back_color, ((0, 0), (self.screen.get_width(), 100)))
+        pygame.draw.rect(
+            self.screen,
+            self.back_color,
+            (0, 0, self.screen.get_width(), 100)
+        )
         text = f"Player {self.current}'s turn"
         pos = (self.screen.get_width() // 2, 50)
         text = self.fuente.render(text, True, COLOR_OWNER)
@@ -245,8 +252,8 @@ class Game:
         x, y = pos
         r1 = self.where_x(x)
         r2 = self.where_y(y)
-        if not(r1[0] == False):
-            if not(r2[0] == False):
+        if r1[0]:
+            if r2[0]:
                 if x < (r1[0] + T):
                     x_b = r1[2] - 1
                     y_b = r2[2] - 1
@@ -287,7 +294,7 @@ class Game:
                     return con
         else:
             if (x > (self.x_offset - T)) and (x < self.x_offset):
-                if not(r2[0] == False):
+                if r2[0]:
                     x_b = 0
                     y_b = r2[2] - 1
                     b = self.boxes[x_b][y_b]
@@ -302,7 +309,7 @@ class Game:
                         (self.x_offset, r2[0]), (self.x_offset, r2[1]))
                     return con
             elif (x < (self.x_end + T)) and (x > self.x_end):
-                if not(r2[0] == False):
+                if r2[0]:
                     x_b = self.grid_size[0] - 2
                     y_b = r2[2] - 1
                     b = self.boxes[x_b][y_b]
@@ -316,8 +323,8 @@ class Game:
                     self.draw_line((self.x_end, r2[0]), (self.x_end, r2[1]))
                     return con
 
-        if not(r2[0] == False):
-            if not(r1[0] == False):
+        if r2[0]:
+            if r1[0]:
                 if y < (r2[0] + T):
                     x_b = r1[2] - 1
                     y_b = r2[2] - 1
@@ -358,7 +365,7 @@ class Game:
                     return con
         else:
             if (y > self.y_offset - T) and (y < self.y_offset):
-                if not(r1[0] == False):
+                if r1[0]:
                     x_b = r1[2] - 1
                     y_b = 0
                     b = self.boxes[x_b][y_b]
@@ -373,7 +380,7 @@ class Game:
                                    (r1[1], self.y_offset))
                     return con
             elif (y < (self.y_end + T)) and (y > self.y_end):
-                if not(r1[0] == False):
+                if r1[0]:
                     x_b = r1[2] - 1
                     y_b = self.grid_size[1] - 2
                     b = self.boxes[x_b][y_b]
@@ -406,7 +413,7 @@ class Game:
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     pos = event.pos
                     ret = self.where(pos)
-                    if ret == False:
+                    if ret is False:
                         if self.current == 'A':
                             self.current = 'B'
                         else:

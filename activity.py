@@ -158,7 +158,6 @@ class Activity(activity.Activity):
 
         colors_bar = Gtk.Toolbar()
 
-        ########################################################################
         # Point color
         item = Gtk.ToolItem()
         label = Gtk.Label()
@@ -178,7 +177,6 @@ class Activity(activity.Activity):
         colors_bar.insert(separator, -1)
         separator.show()
 
-        ########################################################################
         # Back color
         item = Gtk.ToolItem()
         label = Gtk.Label()
@@ -200,7 +198,6 @@ class Activity(activity.Activity):
         colors_bar.insert(separator, -1)
         separator.show()
 
-        ########################################################################
         # Line color
         item = Gtk.ToolItem()
         label = Gtk.Label()
@@ -220,7 +217,6 @@ class Activity(activity.Activity):
         colors_bar.insert(separator, -1)
         separator.show()
 
-        ########################################################################
         # Owner color
         item = Gtk.ToolItem()
         label = Gtk.Label()
