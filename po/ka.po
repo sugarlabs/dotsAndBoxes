@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-09 16:16+0530\n"
-"PO-Revision-Date: 2024-11-03 05:26+0000\n"
+"PO-Revision-Date: 2024-11-04 17:26+0000\n"
 "Last-Translator: NF <rkavt@smartprojects.ge>\n"
 "Language-Team: Georgian <http://weblate.sugarlabs.org/projects/"
 "sugar-activities/dots-and-boxes/ka/>\n"
@@ -29,61 +29,65 @@ msgstr ""
 
 #: activity.py:77
 msgid "New game"
-msgstr ""
+msgstr "ახალი თამაში"
 
 #: activity.py:88
 msgid "Current player:"
-msgstr ""
+msgstr "მიმდინარე მოთამაშე:"
 
 #: activity.py:97 activity.py:289
 msgid "Player 1"
-msgstr ""
+msgstr "მოთამაშე 1"
 
 #: activity.py:121
 msgid "H"
-msgstr ""
+msgstr "H"
 
 #: activity.py:137
 msgid "V"
-msgstr ""
+msgstr "V"
 
 #: activity.py:151
 msgid "Board size"
-msgstr ""
+msgstr "დაფის ზომა"
 
 #: activity.py:165
 msgid "Points"
-msgstr ""
+msgstr "წერტილები"
 
 #: activity.py:185
 msgid "Background"
-msgstr ""
+msgstr "ფონი"
 
 #: activity.py:207
 msgid "Lines"
-msgstr ""
+msgstr "ხაზები"
 
 #: activity.py:227
 msgid "Owner"
-msgstr ""
+msgstr "მფლობელი"
 
 #: activity.py:241
 msgid "Colors"
-msgstr ""
+msgstr "ფერები"
 
 #: activity.py:291
 msgid "Player 2"
-msgstr ""
+msgstr "მოთამაშე 2"
 
 #: main.py:96
 msgid "Tie"
-msgstr ""
+msgstr "ფრე"
 
 #: main.py:98
 #, python-format
 msgid "Player %s win!"
-msgstr ""
+msgstr "მოთამაშე %s-მა გაიმარჯვა!"
 
 #: main.py:105
 msgid "Click to start a new game"
-msgstr ""
+msgstr "დააწკაპუნეთ ახალი თამაშის დასაწყებად"
+
+#: activity/activity.info:3
+msgid "The classical \"Dots and Boxes\" game"
+msgstr "კლასიკური თამაში \"წერტილები და ჯოხები\""
