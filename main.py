@@ -403,6 +403,7 @@ class Game:
         self.fuente2 = pygame.font.Font(None, self.box_size[0] * 2)
         self.draw_grid()
         run = True
+        game_end_screen = False
         while run:
             while Gtk.events_pending():
                 Gtk.main_iteration()
@@ -411,33 +412,28 @@ class Game:
                 if event.type == pygame.QUIT:
                     run = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    pos = event.pos
-                    ret = self.where(pos)
-                    if ret is False:
-                        if self.current == 'A':
-                            self.current = 'B'
-                        else:
-                            self.current = 'A'
-                        if self.parent:
-                            self.parent.set_current_player(self.current)
-            self.draw_current_player()
-            pygame.display.flip()
-            if self.grid_cant == (PLAYER_A + PLAYER_B):
+                    if game_end_screen:
+                        game_end_screen = False
+                        self.reset_game()
+                    else:
+                        pos = event.pos
+                        ret = self.where(pos)
+                        if ret is False:
+                            if self.current == 'A':
+                                self.current = 'B'
+                            else:
+                                self.current = 'A'
+                            if self.parent:
+                                self.parent.set_current_player(self.current)
+                                
+            if not game_end_screen:
+                self.draw_current_player()
+            
+            if self.grid_cant == (PLAYER_A + PLAYER_B) and not game_end_screen:
                 self.draw_game_end()
-                run2 = True
-                while run2:
-                    while Gtk.events_pending():
-                        Gtk.main_iteration()
-
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            run2 = False
-                            self.draw_grid()
-                        elif event.type == pygame.MOUSEBUTTONDOWN:
-                            run2 = False
-                            self.reset_game()
-                    pygame.display.flip()
-            # Try to stay at 30 FPS
+                game_end_screen = True
+        
+            pygame.display.flip()
             self.clock.tick(30)
 
 
