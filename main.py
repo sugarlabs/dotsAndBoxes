@@ -50,7 +50,11 @@ class box:
         self.showOwner()
 
     def showOwner(self):
-        text = self.fuente.render(self.owner, 1, COLOR_OWNER)
+        if self.owner == 'A':
+            owner_color = self.parent.player_a_line_color
+        else:
+            owner_color = self.parent.player_b_line_color
+        text = self.fuente.render(self.owner, 1, owner_color)
         textrect = text.get_rect()
         textrect.center = (self.pos_x, self.pos_y)
         self.screen.blit(text, textrect)
@@ -69,7 +73,8 @@ class Game:
         self.x_offset = 100
         self.y_offset = 100
         self.back_color = (84, 185, 72)
-        self.line_color = (0, 0, 0)
+        self.player_a_line_color = (0, 0, 0)  
+        self.player_b_line_color = (0, 0, 0)
         self.point_color = (0, 0, 0)
         self.horizontal = []
         self.vertical = []
@@ -78,7 +83,8 @@ class Game:
         self.y_end = 0
 
     def draw_line(self, r1, r2):
-        pygame.draw.line(self.screen, self.line_color, r1, r2, LINE_SIZE)
+        current_color = self.player_a_line_color if self.current == 'A' else self.player_b_line_color
+        pygame.draw.line(self.screen, current_color, r1, r2, LINE_SIZE)
 
     def draw_game_end(self):
         s = self.screen.get_size()
@@ -128,7 +134,10 @@ class Game:
         self.draw_board()
 
     def set_line_color(self, color):
-        self.line_color = color
+        if self.current == 'A':
+            self.player_a_line_color = color
+        else:
+            self.player_b_line_color = color
         self.draw_grid()
         self.draw_board()
 
@@ -177,7 +186,8 @@ class Game:
         )
         text = f"Player {self.current}'s turn"
         pos = (self.screen.get_width() // 2, 50)
-        text = self.fuente.render(text, True, COLOR_OWNER)
+        current_color = self.player_a_line_color if self.current == 'A' else self.player_b_line_color
+        text = self.fuente.render(text, True, current_color)
         textrect = text.get_rect()
         textrect.center = pos
         self.screen.blit(text, textrect)
